@@ -20,6 +20,10 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
 springdoc:
   packages-to-scan: com.jit.backend
   default-consumes-media-type: application/json;charset=UTF-8
@@ -34,3 +38,11 @@ springdoc:
       enabled: true
   cache:
     disabled: true
+
+logging.level:
+  org.hibernate.SQL: debug
+
+jwt:
+  secret: dXNn6rO17Jyg64yA7ZWZ6rO87ZWo6ruY7ZWY64qU7Lqh7Iqk7Yak6rK97KeE64yA7ZqM7Iqk66eI7Yq47Yyp7Yag66as7J6F64uI64uk
+  refresh-token-validity-in-seconds: 1209600 # 14일
+  access-token-validity-in-seconds: 43200 # 12시간
