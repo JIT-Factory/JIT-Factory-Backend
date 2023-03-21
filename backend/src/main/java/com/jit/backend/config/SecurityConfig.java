@@ -4,9 +4,7 @@ import com.jit.backend.jwt.JwtAccessDeniedHandler;
 import com.jit.backend.jwt.JwtAuthenticationEntryPoint;
 import com.jit.backend.jwt.JwtAuthenticationFilter;
 import com.jit.backend.jwt.JwtTokenProvider;
-import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,7 +20,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.security.config.Customizer.withDefaults;
 
 
 @Configuration
@@ -53,7 +50,7 @@ public class SecurityConfig {
     }
 
     private static final String[] AUTH_WHITELIST = {
-            "/ping", "/swagger-ui/**","/jit-factory-api.html/**","/api-docs/json/**", "/api/auth/**"
+            "/ping", "/swagger-ui/**","/jit-factory-api.html/**","/api-docs/json/**", "/api/auth/**","/api/admin/signup"
     };
 
     @Bean

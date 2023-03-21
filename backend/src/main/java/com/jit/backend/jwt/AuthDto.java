@@ -21,20 +21,24 @@ public class AuthDto {
     public static class SignupDto {
         private String email;
         private String password;
+        private String name;
 
         @Builder
-        public SignupDto(String email, String password) {
+        public SignupDto(String email, String password, String name) {
             this.email = email;
             this.password = password;
+            this.name = name;
         }
 
         public static SignupDto encodePassword(SignupDto signupDto, String encodedPassword) {
             SignupDto newSignupDto = new SignupDto();
             newSignupDto.email = signupDto.getEmail();
             newSignupDto.password = encodedPassword;
+            newSignupDto.name = signupDto.getName();
             return newSignupDto;
         }
     }
+
 
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)

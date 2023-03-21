@@ -20,6 +20,7 @@ public class User {
     private Long id;
     private String email;
     private String password;
+    private String name;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -29,7 +30,17 @@ public class User {
 
         user.email = signupDto.getEmail();
         user.password = signupDto.getPassword();
+        user.name = signupDto.getName();
         user.role = Role.USER;
+
+        return user;
+    }
+    public static User registerAdmin(AuthDto.SignupDto signupDto){
+        User user = new User();
+        user.email = signupDto.getEmail();
+        user.password = signupDto.getPassword();
+        user.name = signupDto.getName();
+        user.role = Role.ADMIN;
 
         return user;
     }
