@@ -1,8 +1,8 @@
 package com.jit.backend.jwt;
 
-import com.jit.backend.jwt.AuthDto;
-import com.jit.backend.jwt.JwtTokenProvider;
-import com.jit.backend.jwt.RedisService;
+import com.jit.backend.entity.User;
+import com.jit.backend.exception.NotEqualsPasswordException;
+import com.jit.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class AuthService {
+    private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final RedisService redisService;
@@ -30,6 +32,13 @@ public class AuthService {
     // 로그인: 인증 정보 저장 및 비어 토큰 발급
     @Transactional
     public AuthDto.TokenDto login(AuthDto.LoginDto loginDto) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        User user = userRepository.findByEmail(loginDto.getEmail()).orElseThrow(()->{
+            throw new IllegalStateException("Email을 다시 확인하세요.");
+                });
+        if(!encoder.matches(loginDto.getPassword(),user.getPassword())){
+            throw new NotEqualsPasswordException("비밀번호를 다시 확인하세요");
+        }
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword());
 
