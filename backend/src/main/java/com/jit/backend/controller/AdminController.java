@@ -1,5 +1,6 @@
 package com.jit.backend.controller;
 
+import com.jit.backend.dto.UserDto;
 import com.jit.backend.entity.User;
 import com.jit.backend.jwt.AuthDto;
 import com.jit.backend.service.UserService;
@@ -38,5 +39,10 @@ public class AdminController {
 
         userService.registerAdmin(newSignupDto);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/users/{userId}")
+    public ResponseEntity<?> updateUserRole(@PathVariable("userId") Long userId, @RequestBody UserDto userDto){
+        return ResponseEntity.ok(userService.updateUserRole(userId, userDto));
     }
 }
