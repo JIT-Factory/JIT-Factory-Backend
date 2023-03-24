@@ -19,7 +19,7 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping("/dashboard")
+    @GetMapping("/all")
     public @ResponseBody
     ResponseEntity dashboard() {
         List<Product> productList;
