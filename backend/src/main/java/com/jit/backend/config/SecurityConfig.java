@@ -50,7 +50,13 @@ public class SecurityConfig {
     }
 
     private static final String[] AUTH_WHITELIST = {
-            "/ping", "/swagger-ui/**","/jit-factory-api.html/**","/api-docs/json/**", "/api/auth/**","/api/admin/signup", "/api/product/**"
+            "/ping", "/swagger-ui/**","/jit-factory-api.html/**","/api-docs/json/**", "/api/auth/**","/api/admin/signup", "/api/product/**", "/api/log/**"
+    };
+    private static final String[] AUTH_ADMIN = {
+
+    };
+    private static final String[] AUTH_USER = {
+
     };
 
     @Bean
