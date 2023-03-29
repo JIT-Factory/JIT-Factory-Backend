@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
-public class FactoryDto {
+public class DefectiveProductDto {
 
-    private String status;
+    private String productName;
     private String reason;
     private LocalDateTime errorTime;
 }

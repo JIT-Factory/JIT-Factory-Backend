@@ -1,8 +1,8 @@
 package com.jit.backend.controller;
 
-import com.jit.backend.dto.FactoryDto;
-import com.jit.backend.entity.Factory;
-import com.jit.backend.service.FactoryService;
+import com.jit.backend.dto.DefectiveProductDto;
+import com.jit.backend.entity.DefectiveProduct;
+import com.jit.backend.service.DefectiveProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,23 +14,23 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/log")
 @RequiredArgsConstructor
-public class FactoryController {
+public class DefectiveProductController {
 
-    private final FactoryService factoryService;
+    private final DefectiveProductService defectiveProductService;
     @GetMapping("/all")
     public @ResponseBody
     ResponseEntity dashboard() {
-        List<Factory> factoryLogs;
+        List<DefectiveProduct> defectiveProductLogs;
         try{
-            factoryLogs = factoryService.allLogs();
+            defectiveProductLogs = defectiveProductService.allLogs();
         }catch (IllegalStateException e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }return new ResponseEntity(factoryLogs, HttpStatus.OK);
+        }return new ResponseEntity(defectiveProductLogs, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Void> addLogs(@RequestBody @Valid FactoryDto factoryDto) {
-        factoryService.addLogs(factoryDto);
+    public ResponseEntity<Void> addLogs(@RequestBody @Valid DefectiveProductDto defectiveProductDto) {
+        defectiveProductService.addLogs(defectiveProductDto);
         return new ResponseEntity(HttpStatus.OK);
     }
 }
