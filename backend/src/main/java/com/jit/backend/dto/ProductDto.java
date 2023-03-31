@@ -14,6 +14,8 @@ public class ProductDto {
 
     private Integer sales;
 
+    private String reason;
+
     private LocalDateTime createTime;
 
 
