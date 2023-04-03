@@ -17,12 +17,10 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class OrdersService {
     private final OrdersRepository ordersRepository;
-
     public List<Orders> allOrder()  {
         List<Orders> ordersList = ordersRepository.findAll();
         return ordersList;
     }
-
     public void addOrUpdateOrder(OrdersDto ordersDto) {
         Orders orders = ordersRepository.findByProductName(ordersDto.getProductName());
         if(orders == null){
@@ -32,7 +30,6 @@ public class OrdersService {
         }else{
             orders.updateProductOrders(ordersDto);
         }
-
         ordersRepository.saveAndFlush(orders);
     }
 }

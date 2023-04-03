@@ -16,14 +16,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findAllByStatus(String status);
     List<Product> findAllByProductName(String productName);
 
-    @Query("SELECT COUNT(DISTINCT p.id) AS totalCount, SUM(p.sales) AS salesSum, "
-            + "SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS successCount, "
-            + "SUM(CASE WHEN p.status = 'fail' THEN 1 ELSE 0 END) AS failCount "
+    @Query("SELECT COUNT(DISTINCT p.id) AS totalProductCount, SUM(p.sales) AS salesSum, "
+            + "SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS success, "
+            + "SUM(CASE WHEN p.status = 'fail' THEN 1 ELSE 0 END) AS fail "
             + "FROM Product p")
     Map<String, Long> countByStatus();
 
     // 월간
-    @Query("SELECT COUNT(DISTINCT p.id) AS idCount, SUM(p.sales) AS salesSum, "
+    @Query("SELECT COUNT(DISTINCT p.id) AS productCount, SUM(p.sales) AS salesSum, "
             + "SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS success, "
             + "SUM(CASE WHEN p.status = 'fail' THEN 1 ELSE 0 END) AS fail "
             + "FROM Product p "
@@ -32,7 +32,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Map<String, Long> sumSalesMonthly();
 
     // 주간
-    @Query("SELECT COUNT(DISTINCT p.id) AS idCount, SUM(p.sales) AS salesSum, "
+    @Query("SELECT COUNT(DISTINCT p.id) AS productCount, SUM(p.sales) AS salesSum, "
             + "SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS success, "
             + "SUM(CASE WHEN p.status = 'fail' THEN 1 ELSE 0 END) AS fail "
             + "FROM Product p "
@@ -41,7 +41,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                                      @Param("endDate") LocalDateTime endDate);
 
     // 당일
-    @Query("SELECT COUNT(DISTINCT p.id) AS idCount, SUM(p.sales) AS salesSum, "
+    @Query("SELECT COUNT(DISTINCT p.id) AS productCount, SUM(p.sales) AS salesSum, "
             + "SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS success, "
             + "SUM(CASE WHEN p.status = 'fail' THEN 1 ELSE 0 END) AS fail "
             + "FROM Product p "

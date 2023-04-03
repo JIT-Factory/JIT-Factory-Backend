@@ -9,13 +9,9 @@ import java.time.LocalDateTime;
 public class ProductDto {
 
     private String productName;
-
     private String status;
-
     private Integer sales;
-
     private String reason;
-
     private LocalDateTime createTime;
 
 

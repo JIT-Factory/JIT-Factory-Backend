@@ -13,10 +13,7 @@ import lombok.*;
 public class UserDto {
 
     private String email;
-
     private String password;
-
     private String name;
-
     private Role role;
 }
