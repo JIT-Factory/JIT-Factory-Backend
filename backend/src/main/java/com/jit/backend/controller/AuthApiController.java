@@ -4,6 +4,8 @@ import com.jit.backend.entity.User;
 import com.jit.backend.jwt.AuthDto;
 import com.jit.backend.jwt.AuthService;
 import com.jit.backend.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "인증 페이지", description = "인증, 회원 관련 api 입니다.")
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
@@ -23,6 +26,7 @@ public class AuthApiController {
     private final long COOKIE_EXPIRATION = 7776000; // 90일
 
     // 회원가입
+    @Operation(summary = "회원가입", description = "User의 회원가입 기능입니다.")
     @PostMapping("/signup")
     public ResponseEntity<Void> signup(@RequestBody @Valid AuthDto.SignupDto signupDto) {
         String encodedPassword = encoder.encode(signupDto.getPassword());
@@ -33,6 +37,7 @@ public class AuthApiController {
     }
 
     // 로그인 -> 토큰 발급
+    @Operation(summary = "로그인", description = "User 및 ADMIN의 로그인 기능입니다.")
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid AuthDto.LoginDto loginDto) {
         // User 등록 및 Refresh Token 저장
@@ -60,7 +65,9 @@ public class AuthApiController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // 재발급 필요
         }
     }
+
     // 토큰 재발급
+    @Operation(summary = "토큰 재발급", description = "토큰을 재발급 합니다.")
     @PostMapping("/reissue")
     public ResponseEntity<?> reissue(@CookieValue(name = "refresh-token") String requestRefreshToken,
                                      @RequestHeader("Authorization") String requestAccessToken) {
@@ -94,6 +101,7 @@ public class AuthApiController {
     }
 
     // 로그아웃
+    @Operation(summary = "로그아웃", description = "User 및 ADMIN의 로그아웃 기능입니다.")
     @PostMapping("/logout")
     public ResponseEntity<?> logout(@RequestHeader("Authorization") String requestAccessToken) {
         authService.logout(requestAccessToken);
