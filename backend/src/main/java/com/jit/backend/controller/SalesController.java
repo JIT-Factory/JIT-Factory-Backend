@@ -4,6 +4,7 @@ import com.jit.backend.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,5 +33,11 @@ public class SalesController {
     public ResponseEntity<Map<String, Long>> getDailySales() {
         Map<String, Long> dailySales = productService.getDailySales();
         return ResponseEntity.ok(dailySales);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<Map<String, Long>> getSumSales(){
+        Map<String, Long> allSales = productService.sumSales();
+        return ResponseEntity.ok(allSales);
     }
 }

@@ -33,31 +33,26 @@ public class ProductService {
         return products;
     }
 
-    public Integer sumSales(){
-        return productRepository.sumSales();
+    public Map<String, Long> sumSales(){
+        return productRepository.countByStatus();
     }
-
     @Transactional
     public void addProduct(ProductDto productDto) {
         Product product = Product.addProduct(productDto);
         productRepository.save(product);
     }
-
     public Map<String, Long> getMonthlySales() {
         return productRepository.sumSalesMonthly();
     }
-
     public Map<String, Long> getWeeklySales() {
         LocalDateTime endDate = LocalDateTime.now();
         LocalDateTime startDate = endDate.minusDays(7);
         return productRepository.sumSalesWeekly(startDate, endDate);
     }
-
     public Map<String, Long> getDailySales() {
         LocalDateTime endDate = LocalDateTime.now();
         LocalDateTime startDate = endDate.with(LocalTime.MIN);
         return productRepository.sumSalesDaily(startDate, endDate);
     }
-
 
 }
