@@ -32,6 +32,9 @@ public class Product {
     private Integer sales;
 
     @Column
+    private String reason;
+
+    @Column
     private LocalDateTime createTime;
 
     public static Product addProduct(ProductDto productDto) {
@@ -39,6 +42,7 @@ public class Product {
         product.productName = productDto.getProductName();
         product.status = productDto.getStatus();
         product.sales = productDto.getSales();
+        product.reason = productDto.getReason();
         product.createTime = LocalDateTime.now();
         return product;
     }
