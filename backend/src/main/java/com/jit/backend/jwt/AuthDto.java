@@ -1,12 +1,17 @@
 package com.jit.backend.jwt;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
+
 
 public class AuthDto {
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @Schema(description = "Login DTO")
     public static class LoginDto {
+        @Schema(description = "email", example = "test@test.com")
         private String email;
+        @Schema(description = "password", example = "password")
         private String password;
 
         @Builder
@@ -18,9 +23,13 @@ public class AuthDto {
 
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @Schema(description = "Signup DTO")
     public static class SignupDto {
+        @Schema(description = "email", example = "test@test.com")
         private String email;
+        @Schema(description = "password", example = "password")
         private String password;
+        @Schema(description = "이름", example = "Tester")
         private String name;
 
         @Builder
@@ -42,8 +51,11 @@ public class AuthDto {
 
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @Schema(description = "Token DTO")
     public static class TokenDto {
+        @Schema(description = "Access Token")
         private String accessToken;
+        @Schema(description = "Refresh DTO")
         private String refreshToken;
 
         public TokenDto(String accessToken, String refreshToken) {
