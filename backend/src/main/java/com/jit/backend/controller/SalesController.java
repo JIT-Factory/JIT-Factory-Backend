@@ -34,4 +34,10 @@ public class SalesController {
         Map<String, Long> dailySales = productService.getDailySales();
         return ResponseEntity.ok(dailySales);
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<Map<String, Long>> getSumSales(){
+        Map<String, Long> allSales = productService.sumSales();
+        return ResponseEntity.ok(allSales);
+    }
 }

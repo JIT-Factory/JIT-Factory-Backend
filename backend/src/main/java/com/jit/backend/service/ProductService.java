@@ -33,8 +33,8 @@ public class ProductService {
         return products;
     }
 
-    public Integer sumSales(){
-        return productRepository.sumSales();
+    public Map<String, Long> sumSales(){
+        return productRepository.countByStatus();
     }
 
     @Transactional

@@ -13,12 +13,14 @@ import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    Long countBy();
     List<Product> findAllByStatus(String status);
     List<Product> findAllByProductName(String productName);
 
-    @Query("SELECT SUM(sales) FROM Product ")
-    Integer sumSales();
+    @Query("SELECT COUNT(DISTINCT p.id) AS totalCount, SUM(p.sales) AS salesSum, "
+            + "SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS successCount, "
+            + "SUM(CASE WHEN p.status = 'fail' THEN 1 ELSE 0 END) AS failCount "
+            + "FROM Product p")
+    Map<String, Long> countByStatus();
 
     // 월간
     @Query("SELECT COUNT(DISTINCT p.id) AS idCount, SUM(p.sales) AS salesSum, "
