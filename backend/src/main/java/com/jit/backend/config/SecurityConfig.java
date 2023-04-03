@@ -53,7 +53,7 @@ public class SecurityConfig {
             "/api/ping", "/swagger-ui/**","/jit-factory-api.html/**","/api-docs/json/**", "/api/auth/**","/api/admin/signup", "/api/product/**", "/api/sales/**"
     };
     private static final String[] AUTH_ADMIN = {
-
+            "/api/admin/**", "/api/orders/**"
     };
     private static final String[] AUTH_USER = {
 
@@ -81,7 +81,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .shouldFilterAllDispatcherTypes(false)
                         .requestMatchers(AUTH_WHITELIST).permitAll()
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers(AUTH_ADMIN).hasRole("ADMIN")
                         .anyRequest()
                         .authenticated());
 
