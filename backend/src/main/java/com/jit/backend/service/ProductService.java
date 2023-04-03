@@ -59,5 +59,4 @@ public class ProductService {
         return productRepository.sumSalesDaily(startDate, endDate);
     }
 
-
 }

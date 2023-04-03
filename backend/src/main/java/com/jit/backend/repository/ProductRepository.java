@@ -20,25 +20,31 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT SUM(sales) FROM Product ")
     Integer sumSales();
 
-    //월간
-    @Query("SELECT COUNT(DISTINCT p.id) AS idCount, SUM(p.sales) AS salesSum "
+    // 월간
+    @Query("SELECT COUNT(DISTINCT p.id) AS idCount, SUM(p.sales) AS salesSum, "
+            + "SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS success, "
+            + "SUM(CASE WHEN p.status = 'fail' THEN 1 ELSE 0 END) AS fail "
             + "FROM Product p "
             + "WHERE YEAR(p.createTime) = YEAR(CURRENT_TIMESTAMP) "
             + "AND MONTH(p.createTime) = MONTH(CURRENT_TIMESTAMP)")
     Map<String, Long> sumSalesMonthly();
 
-    //주간
-    @Query("SELECT COUNT(DISTINCT p.id) AS idCount, SUM(p.sales) AS salesSum "
+    // 주간
+    @Query("SELECT COUNT(DISTINCT p.id) AS idCount, SUM(p.sales) AS salesSum, "
+            + "SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS success, "
+            + "SUM(CASE WHEN p.status = 'fail' THEN 1 ELSE 0 END) AS fail "
             + "FROM Product p "
             + "WHERE p.createTime BETWEEN :startDate AND :endDate")
     Map<String, Long> sumSalesWeekly(@Param("startDate") LocalDateTime startDate,
-                                        @Param("endDate") LocalDateTime endDate);
+                                     @Param("endDate") LocalDateTime endDate);
 
-    //당일
-    @Query("SELECT COUNT(DISTINCT p.id) AS idCount, SUM(p.sales) AS salesSum "
+    // 당일
+    @Query("SELECT COUNT(DISTINCT p.id) AS idCount, SUM(p.sales) AS salesSum, "
+            + "SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS success, "
+            + "SUM(CASE WHEN p.status = 'fail' THEN 1 ELSE 0 END) AS fail "
             + "FROM Product p "
             + "WHERE p.createTime BETWEEN :startDate AND :endDate")
     Map<String, Long> sumSalesDaily(@Param("startDate") LocalDateTime startDate,
-                                       @Param("endDate") LocalDateTime endDate);
+                                    @Param("endDate") LocalDateTime endDate);
 
 }
