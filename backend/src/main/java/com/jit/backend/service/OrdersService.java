@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class OrdersService {
     private final OrdersRepository ordersRepository;
     public List<Orders> allOrder()  {

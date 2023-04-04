@@ -2,24 +2,25 @@ server:
   port: 8080
 
 spring:
-  h2:
-    console:
-      enabled: true
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jit?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    username: jit
+    password: usg
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create-drop
-    properties:
-      hibernate:
-        format_sql: true
-        show_sql: true
+      ddl-auto: update # 처음에는 create
+
+
+  #jpa:
+  #  database-platform: org.hibernate.dialect.H2Dialect
+  #  defer-datasource-initialization: true
+  #  hibernate:
+  #    ddl-auto: create-drop
+  #  properties:
+  #    hibernate:
+  #      format_sql: true
+  #      show_sql: true
   data:
     redis:
       host: localhost
