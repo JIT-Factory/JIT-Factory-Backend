@@ -49,7 +49,7 @@ public class ProductController {
 
     @Operation(summary = "상품 이름에 대한 상품 조회", description = "Product Name에 해당하는 상품의 생산 내역을 조회합니다.")
     @GetMapping("/name/{productName}")
-    ResponseEntity nameOfProduct(@PathVariable ("productName") String productName) {
+    public ResponseEntity nameOfProduct(@PathVariable ("productName") String productName) {
         List<Product> productList;
         try{
             productList = productService.nameOfProduct(productName);
