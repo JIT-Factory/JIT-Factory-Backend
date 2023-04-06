@@ -44,6 +44,7 @@ public class Product {
         product.sales = productDto.getSales();
         product.reason = productDto.getReason();
         product.createTime = LocalDateTime.now();
+
         return product;
     }
 
