@@ -4,7 +4,6 @@ import com.jit.backend.dto.UserDto;
 import com.jit.backend.entity.User;
 import com.jit.backend.jwt.AuthDto;
 import com.jit.backend.repository.UserRepository;
-import com.sun.jdi.request.DuplicateRequestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

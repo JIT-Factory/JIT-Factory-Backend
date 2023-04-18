@@ -1,6 +1,5 @@
 package com.jit.backend.service;
 
-import com.jit.backend.dto.SalesDto;
 import com.jit.backend.entity.Product;
 import com.jit.backend.entity.Sales;
 import com.jit.backend.repository.ProductRepository;
