@@ -23,7 +23,7 @@ public class OrdersController {
     @Operation(summary = "주문 조회", description = "Unity에서 생산중인 Product의 현황을 조회합니다.")
     @GetMapping("/all")
     public @ResponseBody
-    ResponseEntity getAllMember() {
+    ResponseEntity getAllOrders() {
         List<Orders> ordersList;
         try{
             ordersList = ordersService.allOrder();

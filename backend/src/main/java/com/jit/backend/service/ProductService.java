@@ -1,7 +1,9 @@
 package com.jit.backend.service;
 
 import com.jit.backend.dto.ProductDto;
+import com.jit.backend.entity.Material;
 import com.jit.backend.entity.Product;
+import com.jit.backend.repository.MaterialRepository;
 import com.jit.backend.repository.ProductRepository;
 import com.jit.backend.repository.SalesRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,7 @@ import java.util.List;
 public class ProductService {
     private final ProductRepository productRepository;
     private final SalesRepository salesRepository;
+    private final MaterialRepository materialRepository;
 
     public List<Product> allProducts()  {
         List<Product> products = productRepository.findAll();
@@ -32,6 +35,13 @@ public class ProductService {
 
     public Product addProduct(ProductDto productDto) {
         Product product = Product.addProduct(productDto);
+
+        Material material = materialRepository.findByMaterialName(productDto.getMaterialName());
+        if (material != null) {
+            material.setStock(material.getStock() - productDto.getRequireMaterial());
+        }
+        materialRepository.save(material);
+
         return productRepository.save(product);
     }
 }

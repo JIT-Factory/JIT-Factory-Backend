@@ -53,7 +53,7 @@ public class SecurityConfig {
             "/api/ping", "/swagger-ui/**","/jit-factory-api.html/**","/api-docs/json/**", "/api/auth/**","/api/admin/signup", "/api/product/**", "/api/sales/**"
     };
     private static final String[] AUTH_ADMIN = {
-            "/api/admin/**", "/api/orders/**"
+            "/api/admin/**", "/api/orders/**", "/api/material/**"
     };
     private static final String[] AUTH_USER = {
 
