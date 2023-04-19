@@ -1,11 +1,8 @@
 package com.jit.backend.service;
 
 import com.jit.backend.dto.OrdersDto;
-import com.jit.backend.dto.UserDto;
 import com.jit.backend.entity.Orders;
-import com.jit.backend.entity.User;
 import com.jit.backend.repository.OrdersRepository;
-import jakarta.persistence.criteria.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

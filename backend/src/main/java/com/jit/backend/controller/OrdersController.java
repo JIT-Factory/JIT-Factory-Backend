@@ -23,7 +23,7 @@ public class OrdersController {
     @Operation(summary = "주문 조회", description = "Unity에서 생산중인 Product의 현황을 조회합니다.")
     @GetMapping("/all")
     public @ResponseBody
-    ResponseEntity getAllMember() {
+    ResponseEntity getAllOrders() {
         List<Orders> ordersList;
         try{
             ordersList = ordersService.allOrder();
@@ -32,7 +32,7 @@ public class OrdersController {
         }return new ResponseEntity(ordersList, HttpStatus.OK);
     }
 
-    @Operation(summary = "주문", description = "Unity로 Product를 추가할 수 있는 주문 기능입니다.")
+    @Operation(summary = "주문", description = "Unity로 Product를 추가할 수 있는 주문 기능입니다. <br>productName에 해당 이름이 존재하면 테이블을 Update, 없으면 Create합니다.")
     @PostMapping("/new")
     public ResponseEntity<String> addOrUpdateOrder(@RequestBody OrdersDto ordersDto) {
         ordersService.addOrUpdateOrder(ordersDto);

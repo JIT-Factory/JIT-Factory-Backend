@@ -26,7 +26,7 @@ public class AuthApiController {
     private final long COOKIE_EXPIRATION = 7776000; // 90일
 
     // 회원가입
-    @Operation(summary = "회원가입", description = "User의 회원가입 기능입니다.")
+    @Operation(summary = "User 회원가입", description = "User의 회원가입 기능입니다. <br>여기서 회원가입을 하면 Role이 USER인 회원이 생성됩니다.")
     @PostMapping("/signup")
     public ResponseEntity<Void> signup(@RequestBody @Valid AuthDto.SignupDto signupDto) {
         String encodedPassword = encoder.encode(signupDto.getPassword());

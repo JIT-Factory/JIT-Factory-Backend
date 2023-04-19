@@ -1,10 +1,12 @@
 package com.jit.backend.controller;
 
+import com.jit.backend.dto.RoleDto;
 import com.jit.backend.dto.UserDto;
 import com.jit.backend.entity.User;
 import com.jit.backend.jwt.AuthDto;
 import com.jit.backend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +25,7 @@ public class AdminController {
     private final UserService userService;
     private final BCryptPasswordEncoder encoder;
 
-    @Operation(summary = "회원조회", description = "Admin의 모든 회원 조회 기능입니다.")
+    @Operation(summary = "회원조회", description = "Admin의 모든 회원 조회 기능입니다. <br>Role이 ADMIN인 회원만 접속할 수 있습니다.")
     @GetMapping("/users")
     public @ResponseBody
     ResponseEntity getAllMember() {
@@ -36,7 +38,7 @@ public class AdminController {
         return new ResponseEntity(userList, HttpStatus.OK);
     }
 
-    @Operation(summary = "Admin 회원가입", description = "Admin의 회원가입 기능입니다.")
+    @Operation(summary = "Admin 회원가입", description = "Admin의 회원가입 기능입니다. <br>여기서 회원가입을 하면 Role이 ADMIN인 회원이 생성됩니다.")
     @PostMapping("/signup")
     public ResponseEntity<Void> signup(@RequestBody @Valid AuthDto.SignupDto signupDto) {
         String encodedPassword = encoder.encode(signupDto.getPassword());
@@ -47,9 +49,11 @@ public class AdminController {
     }
 
 
-    @Operation(summary = "User 권한변경", description = "Admin이 User의 권한을 변경하는 기능입니다.")
+    @Operation(summary = "User 권한변경", description = "Admin이 User의 권한을 변경하는 기능입니다. <br>Role이 ADMIN인 회원만 접속할 수 있습니다. <br>\"role\": \"role종류\" 만 작성해도 변경이 가능합니다.")
     @PostMapping("/users/{userId}")
-    public ResponseEntity<?> updateUserRole(@PathVariable("userId") Long userId, @RequestBody UserDto userDto){
-        return ResponseEntity.ok(userService.updateUserRole(userId, userDto));
+    public ResponseEntity<?> updateUserRole(
+            @Parameter(description = "파라미터는 유저의ID값을 입력합니다. <br>ex) 2")
+            @PathVariable("userId") Long userId, @RequestBody RoleDto roleDto){
+        return ResponseEntity.ok(userService.updateUserRole(userId, roleDto));
     }
 }
