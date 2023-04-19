@@ -1,5 +1,6 @@
 package com.jit.backend.entity;
 
+import com.jit.backend.dto.RoleDto;
 import com.jit.backend.dto.UserDto;
 import com.jit.backend.jwt.AuthDto;
 import com.jit.backend.oauth.api.OAuthProvider;
@@ -60,7 +61,7 @@ public class User {
 
         return user;
     }
-    public void changeUserRole(UserDto userDto) {
-        this.role = userDto.getRole();
+    public void changeUserRole(RoleDto roleDto) {
+        this.role = roleDto.getRole();
     }
 }

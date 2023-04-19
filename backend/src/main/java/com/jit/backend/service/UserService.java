@@ -1,5 +1,6 @@
 package com.jit.backend.service;
 
+import com.jit.backend.dto.RoleDto;
 import com.jit.backend.dto.UserDto;
 import com.jit.backend.entity.User;
 import com.jit.backend.jwt.AuthDto;
@@ -40,10 +41,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User updateUserRole(Long id, UserDto userDto){
+    public User updateUserRole(Long id, RoleDto roleDto){
         User user = userRepository.findById(id).orElseThrow(()->{
                 throw new IllegalStateException("User 정보를 다시 확인하세요");});
-        user.changeUserRole(userDto);
+        user.changeUserRole(roleDto);
         userRepository.saveAndFlush(user);
         return user;
     }

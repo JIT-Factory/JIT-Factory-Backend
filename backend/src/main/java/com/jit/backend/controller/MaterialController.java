@@ -6,6 +6,7 @@ import com.jit.backend.entity.Material;
 import com.jit.backend.entity.Orders;
 import com.jit.backend.service.MaterialService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "재료(재고)관리 페이지", description = "재료(재고)관리를 관리하는 api 입니다.")
 @RestController
 @RequestMapping("/api/material")
 @RequiredArgsConstructor
