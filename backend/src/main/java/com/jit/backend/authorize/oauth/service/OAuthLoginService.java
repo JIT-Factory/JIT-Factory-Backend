@@ -2,9 +2,9 @@ package com.jit.backend.authorize.oauth.service;
 
 import com.jit.backend.entity.User;
 import com.jit.backend.authorize.jwt.AuthDto;
-import com.jit.backend.authorize.oauth.api.OAuthInfoResponse;
-import com.jit.backend.authorize.oauth.api.OAuthLoginParams;
-import com.jit.backend.authorize.oauth.api.RequestOAuthInfoService;
+import com.jit.backend.authorize.oauth.component.OAuthInfoResponse;
+import com.jit.backend.authorize.oauth.component.OAuthLoginParams;
+import com.jit.backend.authorize.oauth.component.RequestOAuthInfoService;
 import com.jit.backend.authorize.jwt.OAuthTokensGenerator;
 import com.jit.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

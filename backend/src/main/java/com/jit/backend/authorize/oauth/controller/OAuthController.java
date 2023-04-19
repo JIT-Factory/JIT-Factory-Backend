@@ -1,7 +1,7 @@
 package com.jit.backend.authorize.oauth.controller;
 
-import com.jit.backend.authorize.oauth.api.KakaoLoginParams;
-import com.jit.backend.authorize.oauth.api.NaverLoginParams;
+import com.jit.backend.authorize.oauth.kakao.KakaoLoginParams;
+import com.jit.backend.authorize.oauth.naver.NaverLoginParams;
 import com.jit.backend.authorize.oauth.service.OAuthLoginService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,4 +1,4 @@
-package com.jit.backend.authorize.oauth.api;
+package com.jit.backend.authorize.oauth.component;
 
 import org.springframework.util.MultiValueMap;
 

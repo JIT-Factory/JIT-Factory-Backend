@@ -1,5 +1,7 @@
-package com.jit.backend.authorize.oauth.api;
+package com.jit.backend.authorize.oauth.kakao;
 
+import com.jit.backend.authorize.oauth.component.OAuthLoginParams;
+import com.jit.backend.authorize.oauth.component.OAuthProvider;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.util.LinkedMultiValueMap;
@@ -7,7 +9,7 @@ import org.springframework.util.MultiValueMap;
 
 @Getter
 @NoArgsConstructor
-public class KakaoLoginParams implements OAuthLoginParams{
+public class KakaoLoginParams implements OAuthLoginParams {
     private String authorizationCode;
 
     @Override

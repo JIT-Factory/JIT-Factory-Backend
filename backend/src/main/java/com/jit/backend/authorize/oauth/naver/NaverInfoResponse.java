@@ -1,12 +1,14 @@
-package com.jit.backend.authorize.oauth.api;
+package com.jit.backend.authorize.oauth.naver;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.jit.backend.authorize.oauth.component.OAuthInfoResponse;
+import com.jit.backend.authorize.oauth.component.OAuthProvider;
 import lombok.Getter;
 
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NaverInfoResponse implements OAuthInfoResponse{
+public class NaverInfoResponse implements OAuthInfoResponse {
     @JsonProperty("response")
     private Response response;
 

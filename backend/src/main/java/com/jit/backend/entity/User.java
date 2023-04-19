@@ -2,7 +2,7 @@ package com.jit.backend.entity;
 
 import com.jit.backend.dto.RoleDto;
 import com.jit.backend.authorize.jwt.AuthDto;
-import com.jit.backend.authorize.oauth.api.OAuthProvider;
+import com.jit.backend.authorize.oauth.component.OAuthProvider;
 import com.jit.backend.role.Role;
 import jakarta.persistence.*;
 import lombok.*;

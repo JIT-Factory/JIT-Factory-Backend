@@ -1,4 +1,4 @@
-package com.jit.backend.authorize.oauth.api;
+package com.jit.backend.authorize.oauth.component;
 
 public interface OAuthApiClient {
     OAuthProvider oAuthProvider();
