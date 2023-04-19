@@ -22,7 +22,7 @@ public class MaterialController {
 
     private final MaterialService materialService;
 
-    @Operation(summary = "재료(재고) 조회", description = "현재 가지고 있는 재고의 현황을 조회합니다.")
+    @Operation(summary = "재료(재고) 조회", description = "현재 가지고 있는 재고의 현황을 조회합니다. <br>Product가 추가될때 stock이 감소하는 것을 볼 수 있습니다.")
     @GetMapping("/all")
     public @ResponseBody
     ResponseEntity getAllMaterials() {
@@ -34,7 +34,7 @@ public class MaterialController {
         }return new ResponseEntity(materials, HttpStatus.OK);
     }
 
-    @Operation(summary = "재료 추가", description = "Unity의 창고에 재료를 추가할 수 있는 주문 기능입니다.")
+    @Operation(summary = "재료 추가", description = "Unity의 창고에 재료를 추가할 수 있는 주문 기능입니다. <br>\"materialName\"의 Value에 해당하는 이름을 가진 테이블의 stock이 \"stock\"의 Value만큼 증가합니다.")
     @PostMapping("/new")
     public ResponseEntity<String> addMaterials(@RequestBody MaterialDto materialDto) {
         materialService.addMaterial(materialDto);

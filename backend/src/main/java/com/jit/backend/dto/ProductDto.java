@@ -16,10 +16,10 @@ public class ProductDto {
     @Schema(description = "상품 상태(success or fail)", example = "success")
     private String status;
 
-    @Schema(description = "필요한 재료")
+    @Schema(description = "필요한 재료", example = "A")
     private String materialName;
 
-    @Schema(description = "필요한 수량")
+    @Schema(description = "필요한 수량", example = "10")
     private Integer requireMaterial;
 
     @Schema(description = "상품 매출", example = "100")

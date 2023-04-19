@@ -1,6 +1,7 @@
 package com.jit.backend.service;
 
 
+import com.jit.backend.dto.FactoryControlDto;
 import com.jit.backend.dto.FactoryDto;
 import com.jit.backend.entity.Factory;
 import com.jit.backend.repository.FactoryRepository;
@@ -59,16 +60,16 @@ public class FactoryService {
         factoryRepository.saveAndFlush(factory);
     }
 
-    public void stopFactory(FactoryDto factoryDto) {
-        Factory factory = factoryRepository.findByFactoryName(factoryDto.getFactoryName());
+    public void stopFactory(FactoryControlDto factoryControlDto) {
+        Factory factory = factoryRepository.findByFactoryName(factoryControlDto.getFactoryName());
         if(factory != null){
             factory.status("stop");
         }
         factoryRepository.saveAndFlush(factory);
     }
 
-    public void startFactory(FactoryDto factoryDto) {
-        Factory factory = factoryRepository.findByFactoryName(factoryDto.getFactoryName());
+    public void startFactory(FactoryControlDto factoryControlDto) {
+        Factory factory = factoryRepository.findByFactoryName(factoryControlDto.getFactoryName());
         if(factory != null){
             factory.status("start");
         }
