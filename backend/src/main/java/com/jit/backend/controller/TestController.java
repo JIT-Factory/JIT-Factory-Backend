@@ -13,4 +13,9 @@ public class TestController {
     public String pong() {
         return "Pong!";
     }
+
+    @GetMapping("/api/user")
+    public String ping() {
+        return "ping!";
+    }
 }

@@ -1,9 +1,8 @@
 package com.jit.backend.service;
 
 import com.jit.backend.dto.RoleDto;
-import com.jit.backend.dto.UserDto;
 import com.jit.backend.entity.User;
-import com.jit.backend.jwt.AuthDto;
+import com.jit.backend.authorize.jwt.AuthDto;
 import com.jit.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

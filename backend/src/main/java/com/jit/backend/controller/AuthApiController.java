@@ -1,8 +1,7 @@
 package com.jit.backend.controller;
 
-import com.jit.backend.entity.User;
-import com.jit.backend.jwt.AuthDto;
-import com.jit.backend.jwt.AuthService;
+import com.jit.backend.authorize.jwt.AuthDto;
+import com.jit.backend.authorize.jwt.AuthService;
 import com.jit.backend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -11,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Tag(name = "인증 페이지", description = "인증, 회원 관련 api 입니다.")
 @RestController
@@ -49,6 +46,10 @@ public class AuthApiController {
                 .httpOnly(true)
                 .secure(true)
                 .build();
+        System.out.println("accessToken : " + tokenDto.getAccessToken());
+        System.out.println("RefreshToken : " + tokenDto.getRefreshToken());
+        System.out.println("GrantType : " + tokenDto.getGrantType());
+        System.out.println("ExpiresIn : " + tokenDto.getExpiresIn());
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, httpCookie.toString())

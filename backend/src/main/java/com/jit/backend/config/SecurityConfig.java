@@ -1,9 +1,9 @@
 package com.jit.backend.config;
 
-import com.jit.backend.jwt.JwtAccessDeniedHandler;
-import com.jit.backend.jwt.JwtAuthenticationEntryPoint;
-import com.jit.backend.jwt.JwtAuthenticationFilter;
-import com.jit.backend.jwt.JwtTokenProvider;
+import com.jit.backend.authorize.jwt.JwtAccessDeniedHandler;
+import com.jit.backend.authorize.jwt.JwtAuthenticationEntryPoint;
+import com.jit.backend.authorize.jwt.JwtAuthenticationFilter;
+import com.jit.backend.authorize.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -56,7 +56,7 @@ public class SecurityConfig {
             "/api/admin/**", "/api/orders/**", "/api/material/**"
     };
     private static final String[] AUTH_USER = {
-
+            "/api/user"
     };
 
     @Bean
@@ -82,6 +82,7 @@ public class SecurityConfig {
                         .shouldFilterAllDispatcherTypes(false)
                         .requestMatchers(AUTH_WHITELIST).permitAll()
                         .requestMatchers(AUTH_ADMIN).hasRole("ADMIN")
+                        .requestMatchers(AUTH_USER).hasRole("USER")
                         .anyRequest()
                         .authenticated());
 

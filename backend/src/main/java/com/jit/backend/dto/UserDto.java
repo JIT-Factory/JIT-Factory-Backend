@@ -1,9 +1,7 @@
 package com.jit.backend.dto;
 
-import com.jit.backend.jwt.AuthDto;
 import com.jit.backend.role.Role;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.*;
 import lombok.*;
 
 @Getter

@@ -1,9 +1,8 @@
 package com.jit.backend.controller;
 
 import com.jit.backend.dto.RoleDto;
-import com.jit.backend.dto.UserDto;
 import com.jit.backend.entity.User;
-import com.jit.backend.jwt.AuthDto;
+import com.jit.backend.authorize.jwt.AuthDto;
 import com.jit.backend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

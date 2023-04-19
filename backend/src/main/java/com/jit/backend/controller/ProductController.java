@@ -2,20 +2,17 @@ package com.jit.backend.controller;
 
 import com.jit.backend.dto.ProductDto;
 import com.jit.backend.entity.Product;
-import com.jit.backend.jwt.AuthDto;
 import com.jit.backend.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Tag(name = "상품 페이지", description = "상품 관련 api 입니다.")
 @RestController
