@@ -11,7 +11,7 @@ import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "인증 페이지", description = "인증, 회원 관련 api 입니다.")
+@Tag(name = "01. 인증 페이지", description = "인증, 회원 관련 api 입니다.")
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor

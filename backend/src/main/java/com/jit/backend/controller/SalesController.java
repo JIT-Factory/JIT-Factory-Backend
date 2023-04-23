@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Tag(name = "매출 및 내역 페이지", description = "매출과 내역 관련 api 입니다.")
+@Tag(name = "08. 매출 및 내역 페이지", description = "매출과 내역 관련 api 입니다.")
 @RestController
 @RequestMapping("/api/sales")
 @RequiredArgsConstructor

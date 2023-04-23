@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "재료(재고)관리 페이지", description = "재료(재고)관리를 관리하는 api 입니다.")
+@Tag(name = "05. 재료(재고)관리 페이지", description = "재료(재고)관리를 관리하는 api 입니다.")
 @RestController
 @RequestMapping("/api/material")
 @RequiredArgsConstructor

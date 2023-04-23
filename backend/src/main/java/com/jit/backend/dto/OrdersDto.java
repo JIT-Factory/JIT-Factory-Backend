@@ -15,7 +15,7 @@ public class OrdersDto {
     @Schema(description = "상품 이름", example = "ProductA")
     private String productName;
 
-    @Schema(description = "주문 상태(run or stop)", example = "run")
-    private String status;
+    @Schema(description = "주문 개수", example = "50")
+    private Long count;
 
 }

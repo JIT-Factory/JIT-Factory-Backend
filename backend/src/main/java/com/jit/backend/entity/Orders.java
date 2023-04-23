@@ -1,7 +1,6 @@
 package com.jit.backend.entity;
 
 import com.jit.backend.dto.OrdersDto;
-import com.jit.backend.dto.UserDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,9 +22,9 @@ public class Orders {
     private String productName;
 
     @Column(name = "status", nullable = false, updatable = true)
-    private String status;
+    private Long count;
 
     public void updateProductOrders(OrdersDto ordersDto) {
-        this.status = ordersDto.getStatus();
+        this.count = ordersDto.getCount();
     }
 }

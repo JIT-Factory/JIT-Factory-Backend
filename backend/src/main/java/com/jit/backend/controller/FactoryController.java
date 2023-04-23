@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@Tag(name = "공장 관리 페이지", description = "공장과 내부의 컨베이어 벨트 동작 관련 api 입니다.")
+@Tag(name = "04. 공장 관리 페이지", description = "공장과 내부의 컨베이어 벨트 동작 관련 api 입니다.")
 @RestController
 @RequestMapping("/api/factory")
 @RequiredArgsConstructor

@@ -23,7 +23,7 @@ public class OrdersService {
         if(orders == null){
             orders = Orders.builder()
                     .productName(ordersDto.getProductName())
-                    .status(ordersDto.getStatus()).build();
+                    .count(ordersDto.getCount()).build();
         }else{
             orders.updateProductOrders(ordersDto);
         }

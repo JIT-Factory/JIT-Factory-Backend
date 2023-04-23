@@ -82,7 +82,7 @@ public class SecurityConfig {
                         .shouldFilterAllDispatcherTypes(false)
                         .requestMatchers(AUTH_WHITELIST).permitAll()
                         .requestMatchers(AUTH_ADMIN).hasRole("ADMIN")
-                        .requestMatchers(AUTH_USER).hasRole("USER")
+                        .requestMatchers(AUTH_USER).hasAnyRole("USER","ADMIN")
                         .anyRequest()
                         .authenticated());
 

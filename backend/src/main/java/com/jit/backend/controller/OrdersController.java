@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "주문 페이지", description = "Unity에 주문을 할 수 있는 api 입니다.")
+@Tag(name = "06. 주문 페이지", description = "Unity에 주문을 할 수 있는 api 입니다.")
 @RestController
 @RequestMapping("/api/orders")
 @AllArgsConstructor
@@ -32,7 +32,7 @@ public class OrdersController {
         }return new ResponseEntity(ordersList, HttpStatus.OK);
     }
 
-    @Operation(summary = "주문", description = "Unity로 Product를 추가할 수 있는 주문 기능입니다. <br>productName에 해당 이름이 존재하면 테이블을 Update, 없으면 Create합니다.")
+    @Operation(summary = "주문", description = "Unity로 Product를 추가할 수 있는 주문 기능입니다. <br>productName에 해당 이름이 존재하면 테이블을 Update, 없으면 Create합니다.<br>유니티는 count의 갯수만큼 Prodcut를 생산합니다.")
     @PostMapping("/new")
     public ResponseEntity<String> addOrUpdateOrder(@RequestBody OrdersDto ordersDto) {
         ordersService.addOrUpdateOrder(ordersDto);
