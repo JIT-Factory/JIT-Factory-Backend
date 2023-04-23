@@ -1,11 +1,11 @@
 package com.jit.backend.repository;
 
-import com.jit.backend.entity.Factory;
+import com.jit.backend.entity.Process;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface FactoryRepository extends JpaRepository<Factory, Long> {
-    Factory findByProcessName(String processName);
+public interface ProcessRepository extends JpaRepository<Process, Long> {
+    Process findByProcessName(String processName);
 }

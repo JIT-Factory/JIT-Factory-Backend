@@ -1,21 +1,16 @@
 package com.jit.backend.entity;
 
-import com.jit.backend.dto.FactoryDto;
-import com.jit.backend.dto.OrdersDto;
-import com.jit.backend.dto.ProductDto;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "factory")
+@Table(name = "process")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @AllArgsConstructor
-public class Factory {
+public class Process {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

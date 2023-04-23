@@ -1,7 +1,6 @@
 package com.jit.backend.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,8 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Schema(description = "Factory 현황관리 관리 DTO")
-public class FactoryDto {
+@Schema(description = "Process 현황관리 관리 DTO")
+public class ProcessDto {
 
     @Schema(description = "공정 이름", example = "FrontProcess")
     private String processName;
