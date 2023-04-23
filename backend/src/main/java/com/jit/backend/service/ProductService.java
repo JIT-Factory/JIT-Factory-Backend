@@ -36,12 +36,6 @@ public class ProductService {
     public Product addProduct(ProductDto productDto) {
         Product product = Product.addProduct(productDto);
 
-        Material material = materialRepository.findByMaterialName(productDto.getMaterialName());
-        if (material != null) {
-            material.setStock(material.getStock() - productDto.getRequireMaterial());
-        }
-        materialRepository.save(material);
-
         return productRepository.save(product);
     }
 }
