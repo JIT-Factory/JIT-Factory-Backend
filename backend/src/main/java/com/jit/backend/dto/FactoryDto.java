@@ -12,10 +12,10 @@ import lombok.Setter;
 @Schema(description = "Factory 현황관리 관리 DTO")
 public class FactoryDto {
 
-    @Schema(description = "공장 이름", example = "JITFactory")
-    private String factoryName;
+    @Schema(description = "공정 이름", example = "FrontProcess")
+    private String processName;
 
-    @Schema(description = "공장 상태", example = "run")
+    @Schema(description = "공정 상태", example = "run")
     private String factoryStatus;
 
     @Schema(description = "휠 벨트 상태", example = "run")

@@ -22,7 +22,7 @@ public class Factory {
     private Long id;
 
     @Column
-    private String factoryName;
+    private String processName;
 
     @Column
     private String factoryStatus;
