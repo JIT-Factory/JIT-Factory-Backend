@@ -25,6 +25,6 @@ public class Orders {
     private Long count;
 
     public void updateProductOrders(OrdersDto ordersDto) {
-        this.count = ordersDto.getCount();
+        this.count += ordersDto.getCount();
     }
 }

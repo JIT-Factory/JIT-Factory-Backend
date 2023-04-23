@@ -31,30 +31,34 @@ public class FactoryService {
             factory = Factory.builder()
                     .factoryName(factoryDto.getFactoryName())
                     .factoryStatus(factoryDto.getFactoryStatus())
-                    .insultBelt(factoryDto.getInsultBelt())
-                    .productionBelt(factoryDto.getProductionBelt())
-                    .inspectionProductABelt(factoryDto.getInspectionProductABelt())
-                    .inspectionProductBBelt(factoryDto.getInspectionProductBBelt())
-                    .inspectionProductCBelt(factoryDto.getInspectionProductCBelt())
+                    .conveyorBeltWheel(factoryDto.getConveyorBeltWheel())
+                    .conveyorBeltDoor(factoryDto.getConveyorBeltDoor())
+                    .firstProcessMachineConveyorBelt(factoryDto.getFirstProcessMachineConveyorBelt())
+                    .secondProcessMachineConveyorBelt(factoryDto.getSecondProcessMachineConveyorBelt())
+                    .thirdProcessMachineConveyorBelt(factoryDto.getThirdProcessMachineConveyorBelt())
+                    .fourthProcessMachineConveyorBelt(factoryDto.getFourthProcessMachineConveyorBelt())
                     .build();
         }else{
             if(factoryDto.getFactoryStatus() != null){
                 factory.setFactoryStatus(factoryDto.getFactoryStatus());
             }
-            if(factoryDto.getInsultBelt() != null){
-                factory.setInsultBelt(factoryDto.getInsultBelt());
+            if(factoryDto.getConveyorBeltWheel() != null){
+                factory.setConveyorBeltWheel(factoryDto.getConveyorBeltWheel());
             }
-            if(factoryDto.getProductionBelt() != null){
-                factory.setProductionBelt(factoryDto.getProductionBelt());
+            if(factoryDto.getConveyorBeltDoor() != null){
+                factory.setConveyorBeltDoor(factoryDto.getConveyorBeltDoor());
             }
-            if(factoryDto.getInspectionProductABelt() != null){
-                factory.setInspectionProductABelt(factoryDto.getInspectionProductABelt());
+            if(factoryDto.getFirstProcessMachineConveyorBelt() != null){
+                factory.setFirstProcessMachineConveyorBelt(factoryDto.getFirstProcessMachineConveyorBelt());
             }
-            if(factoryDto.getInspectionProductBBelt() != null){
-                factory.setInspectionProductBBelt(factoryDto.getInspectionProductBBelt());
+            if(factoryDto.getSecondProcessMachineConveyorBelt() != null){
+                factory.setSecondProcessMachineConveyorBelt(factoryDto.getSecondProcessMachineConveyorBelt());
             }
-            if(factoryDto.getInspectionProductCBelt() != null){
-                factory.setInspectionProductCBelt(factoryDto.getInspectionProductCBelt());
+            if(factoryDto.getThirdProcessMachineConveyorBelt() != null){
+                factory.setThirdProcessMachineConveyorBelt(factoryDto.getThirdProcessMachineConveyorBelt());
+            }
+            if(factoryDto.getFourthProcessMachineConveyorBelt() != null){
+                factory.setFourthProcessMachineConveyorBelt(factoryDto.getFourthProcessMachineConveyorBelt());
             }
         }
         factoryRepository.saveAndFlush(factory);

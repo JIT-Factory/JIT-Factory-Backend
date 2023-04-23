@@ -28,27 +28,31 @@ public class Factory {
     private String factoryStatus;
 
     @Column
-    private String insultBelt;
+    private String conveyorBeltWheel;
 
     @Column
-    private String productionBelt;
+    private String conveyorBeltDoor;
 
     @Column
-    private String inspectionProductABelt;
+    private String firstProcessMachineConveyorBelt;
 
     @Column
-    private String inspectionProductBBelt;
+    private String secondProcessMachineConveyorBelt;
 
     @Column
-    private String inspectionProductCBelt;
+    private String thirdProcessMachineConveyorBelt;
+
+    @Column
+    private String fourthProcessMachineConveyorBelt;
+
 
     public void status(String status) {
         this.factoryStatus = status;
-        this.insultBelt = status;
-        this.productionBelt = status;
-        this.inspectionProductABelt = status;
-        this.inspectionProductBBelt = status;
-        this.inspectionProductCBelt = status;
-
+        this.conveyorBeltWheel = status;
+        this.conveyorBeltDoor = status;
+        this.firstProcessMachineConveyorBelt = status;
+        this.secondProcessMachineConveyorBelt = status;
+        this.thirdProcessMachineConveyorBelt = status;
+        this.fourthProcessMachineConveyorBelt = status;
     }
 }
