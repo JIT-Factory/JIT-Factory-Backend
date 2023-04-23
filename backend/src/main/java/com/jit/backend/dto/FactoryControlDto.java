@@ -8,8 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Schema(description = "Factory RUN/START 제어 DTO")
+@Schema(description = "Process RUN/START 제어 DTO")
 public class FactoryControlDto {
-    @Schema(description = "공장 이름", example = "JITFactory")
-    private String factoryName;
+    @Schema(description = "공정 이름", example = "FrontProcess")
+    private String processName;
 }

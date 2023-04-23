@@ -25,7 +25,7 @@ public class Factory {
     private String processName;
 
     @Column
-    private String factoryStatus;
+    private String processStatus;
 
     @Column
     private String conveyorBeltWheel;
@@ -47,7 +47,7 @@ public class Factory {
 
 
     public void status(String status) {
-        this.factoryStatus = status;
+        this.processStatus = status;
         this.conveyorBeltWheel = status;
         this.conveyorBeltDoor = status;
         this.firstProcessMachineConveyorBelt = status;

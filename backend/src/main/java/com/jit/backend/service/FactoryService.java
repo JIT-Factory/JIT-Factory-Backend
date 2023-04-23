@@ -30,7 +30,7 @@ public class FactoryService {
         if(factory == null){
             factory = Factory.builder()
                     .processName(factoryDto.getProcessName())
-                    .factoryStatus(factoryDto.getFactoryStatus())
+                    .processStatus(factoryDto.getProcessStatus())
                     .conveyorBeltWheel(factoryDto.getConveyorBeltWheel())
                     .conveyorBeltDoor(factoryDto.getConveyorBeltDoor())
                     .firstProcessMachineConveyorBelt(factoryDto.getFirstProcessMachineConveyorBelt())
@@ -39,8 +39,8 @@ public class FactoryService {
                     .fourthProcessMachineConveyorBelt(factoryDto.getFourthProcessMachineConveyorBelt())
                     .build();
         }else{
-            if(factoryDto.getFactoryStatus() != null){
-                factory.setFactoryStatus(factoryDto.getFactoryStatus());
+            if(factoryDto.getProcessName() != null){
+                factory.setProcessName(factoryDto.getProcessName());
             }
             if(factoryDto.getConveyorBeltWheel() != null){
                 factory.setConveyorBeltWheel(factoryDto.getConveyorBeltWheel());
@@ -65,7 +65,7 @@ public class FactoryService {
     }
 
     public void stopFactory(FactoryControlDto factoryControlDto) {
-        Factory factory = factoryRepository.findByProcessName(factoryControlDto.getFactoryName());
+        Factory factory = factoryRepository.findByProcessName(factoryControlDto.getProcessName());
         if(factory != null){
             factory.status("stop");
         }
@@ -73,7 +73,7 @@ public class FactoryService {
     }
 
     public void startFactory(FactoryControlDto factoryControlDto) {
-        Factory factory = factoryRepository.findByProcessName(factoryControlDto.getFactoryName());
+        Factory factory = factoryRepository.findByProcessName(factoryControlDto.getProcessName());
         if(factory != null){
             factory.status("start");
         }

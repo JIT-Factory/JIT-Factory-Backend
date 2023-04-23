@@ -16,7 +16,7 @@ public class FactoryDto {
     private String processName;
 
     @Schema(description = "공정 상태", example = "run")
-    private String factoryStatus;
+    private String processStatus;
 
     @Schema(description = "휠 벨트 상태", example = "run")
     private String conveyorBeltWheel;
