@@ -21,7 +21,7 @@ public class Orders {
     @Column
     private String productName;
 
-    @Column(name = "status", nullable = false, updatable = true)
+    @Column(name = "count", nullable = false, updatable = true)
     private Long count;
 
     public void updateProductOrders(OrdersDto ordersDto) {

@@ -26,7 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @RequiredArgsConstructor
-@ComponentScan(basePackages = {"com.jit.backend.config", "com.jit.backend.jwt"})
+@ComponentScan(basePackages = {"com.jit.backend.config", "com.jit.backend.authorize.jwt"})
 public class SecurityConfig {
 
     private final JwtTokenProvider jwtTokenProvider;
