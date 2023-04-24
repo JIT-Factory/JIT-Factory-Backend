@@ -1,4 +1,4 @@
-package com.jit.backend.authorize.jwt;
+package com.jit.backend.authorize.redis;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;

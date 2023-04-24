@@ -41,6 +41,9 @@ dependencies {
     /* Redis */
     implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
 
+    /* Email */
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
     /* jwt */
     //implementation 'javax.xml.bind:jaxb-api'
     implementation 'io.jsonwebtoken:jjwt-api:0.11.1'

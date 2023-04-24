@@ -1,5 +1,6 @@
 package com.jit.backend.authorize.jwt;
 
+import com.jit.backend.authorize.redis.RedisService;
 import com.jit.backend.entity.User;
 import com.jit.backend.exception.NotEqualsPasswordException;
 import com.jit.backend.repository.UserRepository;

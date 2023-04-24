@@ -50,7 +50,7 @@ public class SecurityConfig {
     }
 
     private static final String[] AUTH_WHITELIST = {
-            "/api/ping", "/swagger-ui/**","/jit-factory-api.html/**","/api-docs/json/**", "/api/auth/**","/api/admin/signup", "/api/product/**", "/api/sales/**", "/api/process/**", "/api/oauth/**", "/api/login/**"
+            "/api/ping", "/swagger-ui/**","/jit-factory-api.html/**","/api-docs/json/**", "/api/auth/**","/api/admin/signup", "/api/product/**", "/api/sales/**", "/api/process/**", "/api/oauth/**", "/api/email/**"
     };
     private static final String[] AUTH_ADMIN = {
             "/api/admin/**", "/api/orders/**", "/api/material/**"

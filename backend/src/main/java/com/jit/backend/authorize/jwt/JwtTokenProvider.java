@@ -1,5 +1,6 @@
 package com.jit.backend.authorize.jwt;
 
+import com.jit.backend.authorize.redis.RedisService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
