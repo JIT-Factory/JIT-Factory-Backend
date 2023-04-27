@@ -12,5 +12,5 @@ import lombok.*;
 public class OAuthAffiliationDto {
 
     @Schema(description = "소속 회사", example = "CarFactory")
-    private String affiliation;
+    private String factoryName;
 }

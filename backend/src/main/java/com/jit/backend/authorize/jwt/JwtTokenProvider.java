@@ -1,6 +1,7 @@
 package com.jit.backend.authorize.jwt;
 
 import com.jit.backend.authorize.redis.RedisService;
+import com.jit.backend.service.UserService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -22,10 +23,12 @@ import java.util.Date;
 public class JwtTokenProvider implements InitializingBean {
 
     private final UserDetailsServiceImpl userDetailsService;
+    private final UserService userService;
     private final RedisService redisService;
 
     private static final String AUTHORITIES_KEY = "role";
     private static final String EMAIL_KEY = "email";
+    private static final String FACTORY_NAME = "factoryName";
     private static final String url = "https://localhost:8080";
 
     private final String secretKey;
@@ -36,11 +39,12 @@ public class JwtTokenProvider implements InitializingBean {
 
     public JwtTokenProvider(
             UserDetailsServiceImpl userDetailsService,
-            RedisService redisService,
+            UserService userService, RedisService redisService,
             @Value("${jwt.secret}") String secretKey,
             @Value("${jwt.access-token-validity-in-seconds}") Long accessTokenValidityInMilliseconds,
             @Value("${jwt.refresh-token-validity-in-seconds}") Long refreshTokenValidityInMilliseconds) {
         this.userDetailsService = userDetailsService;
+        this.userService = userService;
         this.redisService = redisService;
         this.secretKey = secretKey;
         // seconds -> milliseconds
@@ -67,6 +71,7 @@ public class JwtTokenProvider implements InitializingBean {
                 .claim(url, true)
                 .claim(EMAIL_KEY, email)
                 .claim(AUTHORITIES_KEY, authorities)
+                .claim(FACTORY_NAME, userService.currentUserInfo(email))
                 .signWith(signingKey, SignatureAlgorithm.HS512)
                 .compact();
 

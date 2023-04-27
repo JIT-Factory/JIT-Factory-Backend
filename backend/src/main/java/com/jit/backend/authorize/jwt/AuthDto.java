@@ -31,15 +31,15 @@ public class AuthDto {
         private String password;
         @Schema(description = "이름", example = "Tester")
         private String name;
-
         @Schema(description = "소속 회사", example = "CarFactory")
-        private String affiliation;
+        private String factoryName;
 
         @Builder
-        public SignupDto(String email, String password, String name) {
+        public SignupDto(String email, String password, String name, String factoryName) {
             this.email = email;
             this.password = password;
             this.name = name;
+            this.factoryName = factoryName;
         }
 
         public static SignupDto encodePassword(SignupDto signupDto, String encodedPassword) {
@@ -47,6 +47,7 @@ public class AuthDto {
             newSignupDto.email = signupDto.getEmail();
             newSignupDto.password = encodedPassword;
             newSignupDto.name = signupDto.getName();
+            newSignupDto.factoryName = signupDto.getFactoryName();
             return newSignupDto;
         }
     }

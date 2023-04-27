@@ -5,6 +5,7 @@ import com.jit.backend.dto.RoleDto;
 import com.jit.backend.authorize.jwt.AuthDto;
 import com.jit.backend.authorize.oauth.component.OAuthProvider;
 import com.jit.backend.role.Role;
+import com.zaxxer.hikari.util.ClockSource;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,8 +30,8 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "affiliation")
-    private String affiliation;
+    @Column(name = "factoryName")
+    private String factoryName;
 
     @Column
     private OAuthProvider oAuthProvider;
@@ -39,10 +40,11 @@ public class User {
     private Role role;
 
     @Builder
-    public User(String email, String name, OAuthProvider oAuthProvider){
+    public User(String email, String name, OAuthProvider oAuthProvider, String factoryName){
         this.email = email;
         this.name = name;
         this.role = Role.USER;
+        this.factoryName = factoryName;
         this.oAuthProvider = oAuthProvider;
     }
 
@@ -51,7 +53,7 @@ public class User {
         user.email = signupDto.getEmail();
         user.password = signupDto.getPassword();
         user.name = signupDto.getName();
-        user.affiliation = signupDto.getAffiliation();
+        user.factoryName = signupDto.getFactoryName();
         user.role = Role.USER;
         return user;
     }
@@ -61,7 +63,7 @@ public class User {
         user.email = signupDto.getEmail();
         user.password = signupDto.getPassword();
         user.name = signupDto.getName();
-        user.affiliation = signupDto.getAffiliation();
+        user.factoryName = signupDto.getFactoryName();
         user.role = Role.ADMIN;
 
         return user;
@@ -71,6 +73,6 @@ public class User {
     }
 
     public void addAffiliation(OAuthAffiliationDto oAuthAffiliationDto) {
-        this.affiliation = oAuthAffiliationDto.getAffiliation();
+        this.factoryName = oAuthAffiliationDto.getFactoryName();
     }
 }

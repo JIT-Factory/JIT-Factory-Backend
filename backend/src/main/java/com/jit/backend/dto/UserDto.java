@@ -23,7 +23,7 @@ public class UserDto {
     private String name;
 
     @Schema(description = "소속 회사", example = "CarFactory")
-    private String affiliation;
+    private String factoryName;
 
     @Schema(description = "권한")
     private Role role;

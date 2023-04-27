@@ -47,4 +47,9 @@ public class UserService {
         userRepository.saveAndFlush(user);
         return user;
     }
+
+    public String currentUserInfo(String email){
+        User user = userRepository.findByEmail(email).orElseThrow();
+        return user.getFactoryName();
+    }
 }
