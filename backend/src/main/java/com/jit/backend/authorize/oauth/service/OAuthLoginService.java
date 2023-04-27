@@ -1,10 +1,6 @@
 package com.jit.backend.authorize.oauth.service;
 
-import com.jit.backend.authorize.oauth.component.OAuthAffiliationDto;
-import com.jit.backend.dto.MaterialDto;
-import com.jit.backend.dto.RoleDto;
-import com.jit.backend.dto.UserDto;
-import com.jit.backend.entity.Material;
+
 import com.jit.backend.entity.User;
 import com.jit.backend.authorize.jwt.AuthDto;
 import com.jit.backend.authorize.oauth.component.OAuthInfoResponse;
@@ -22,9 +18,10 @@ public class OAuthLoginService {
     private final OAuthTokensGenerator authTokensGenerator;
     private final RequestOAuthInfoService requestOAuthInfoService;
 
-    public AuthDto.TokenDto login(OAuthLoginParams params) {
+    public AuthDto.TokenDto login(OAuthLoginParams params, String factoryName) {
         OAuthInfoResponse oAuthInfoResponse = requestOAuthInfoService.request(params);
         Long userId = findOrCreateUser(oAuthInfoResponse);
+        addAffiliation(userId, factoryName);
         return authTokensGenerator.generate(userId);
     }
 
@@ -44,10 +41,10 @@ public class OAuthLoginService {
         return userRepository.save(user).getId();
     }
 
-    public User addAffiliation(Long id, OAuthAffiliationDto oAuthAffiliationDto){
+    public User addAffiliation(Long id, String factoryName){
         User user = userRepository.findById(id).orElseThrow(()->{
             throw new IllegalStateException("없는 유저입니다.");});
-        user.addAffiliation(oAuthAffiliationDto);
+        user.addAffiliation(factoryName);
         userRepository.saveAndFlush(user);
         return user;
     }

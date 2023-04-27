@@ -1,11 +1,9 @@
 package com.jit.backend.entity;
 
-import com.jit.backend.authorize.oauth.component.OAuthAffiliationDto;
 import com.jit.backend.dto.RoleDto;
 import com.jit.backend.authorize.jwt.AuthDto;
 import com.jit.backend.authorize.oauth.component.OAuthProvider;
 import com.jit.backend.role.Role;
-import com.zaxxer.hikari.util.ClockSource;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -72,7 +70,7 @@ public class User {
         this.role = roleDto.getRole();
     }
 
-    public void addAffiliation(OAuthAffiliationDto oAuthAffiliationDto) {
-        this.factoryName = oAuthAffiliationDto.getFactoryName();
+    public void addAffiliation(String factoryName) {
+        this.factoryName = factoryName;
     }
 }
