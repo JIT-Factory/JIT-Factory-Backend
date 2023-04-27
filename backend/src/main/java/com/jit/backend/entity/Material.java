@@ -20,6 +20,9 @@ public class Material {
     private Long id;
 
     @Column
+    private String factoryName;
+
+    @Column
     private String materialName;
 
     @Column

@@ -9,12 +9,6 @@ import java.util.List;
 
 @Repository
 public interface OrdersRepository extends JpaRepository<Orders, Long> {
-    Orders findByProductName(String productName);
-
     List<Orders> findAllByFactoryName(String factoryName);
-
-    Orders findByFactoryName(String factoryName);
-
     Orders findByFactoryNameAndProductName(String FactoryName, String ProductName);
-
 }

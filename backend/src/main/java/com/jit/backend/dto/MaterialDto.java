@@ -11,6 +11,9 @@ import lombok.Setter;
 @Schema(description = "재료(재고) 관리 DTO")
 public class MaterialDto {
 
+    @Schema(description = "공장 이름", example = "CarFactory")
+    private String factoryName;
+
     @Schema(description = "재료 이름", example = "A")
     private String materialName;
 
