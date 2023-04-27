@@ -1,15 +1,20 @@
 package com.jit.backend.controller;
 
+import com.jit.backend.authorize.email.EmailDto;
+import com.jit.backend.authorize.email.EmailService;
 import com.jit.backend.authorize.jwt.AuthDto;
 import com.jit.backend.authorize.jwt.AuthService;
 import com.jit.backend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
 
 @Tag(name = "01. 인증 페이지", description = "인증, 회원 관련 api 입니다.")
 @RestController
@@ -19,6 +24,8 @@ public class AuthApiController {
     private final AuthService authService;
     private final UserService userService;
     private final BCryptPasswordEncoder encoder;
+    private final EmailService emailService;
+
 
     private final long COOKIE_EXPIRATION = 7776000; // 90일
 
@@ -32,6 +39,14 @@ public class AuthApiController {
         userService.registerUser(newSignupDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @Operation(summary = "Email 인증", description = "회원가입에 필요한 이메일 인증기능입니다. <br>회원가입에서 입력한 이메일을 body에 넣어 post하면 이메일이 발송됩니다.<br>이메일에 발송된 코드와 Response된 코드가 일치하면 회원가입을 PASS 시켜주세요")
+    @PostMapping("/signup/emailConfirm")
+    public String mailConfirm(@RequestBody EmailDto emailDto) throws MessagingException, UnsupportedEncodingException {
+        String authCode = emailService.sendEmail(emailDto.getEmail());
+        return authCode;
+    }
+
 
     // 로그인 -> 토큰 발급
     @Operation(summary = "로그인", description = "User 및 ADMIN의 로그인 기능입니다.")

@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
 @Schema(description = "상품 DTO")
 public class ProductDto {
 
+    @Schema(description = "공장 이름", example = "CarFactory")
+    private String factoryName;
+
     @Schema(description = "상품 이름", example = "ProductA")
     private String productName;
 

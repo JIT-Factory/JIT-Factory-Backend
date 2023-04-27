@@ -47,14 +47,14 @@ public class ProductController {
         }return new ResponseEntity(productList, HttpStatus.OK);
     }
 
-    @Operation(summary = "상품 이름에 대한 상품 조회", description = "Product Name에 해당하는 상품의 생산 내역을 조회합니다.")
-    @GetMapping("/name/{productName}")
+    @Operation(summary = "공장 이름에 대한 상품 조회", description = "Factory Name에 해당하는 상품의 생산 내역을 조회합니다.")
+    @GetMapping("/name/{factoryName}")
     public ResponseEntity nameOfProduct(
-            @Parameter(description = "파라미터는 productName의 값을 입력합니다. <br>ex) ProductA")
-            @PathVariable ("productName") String productName) {
+            @Parameter(description = "파라미터는 factoryName의 값을 입력합니다. <br>ex) CarFactory")
+            @PathVariable ("factoryName") String factoryName) {
         List<Product> productList;
         try{
-            productList = productService.nameOfProduct(productName);
+            productList = productService.nameOfProduct(factoryName);
         }catch (IllegalStateException e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }return new ResponseEntity(productList, HttpStatus.OK);

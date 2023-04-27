@@ -21,6 +21,9 @@ public class Product {
     private Long id;
 
     @Column
+    private String factoryName;
+
+    @Column
     private String productName;
 
     @Column
@@ -37,6 +40,7 @@ public class Product {
 
     public static Product addProduct(ProductDto productDto) {
         Product product = new Product();
+        product.factoryName = productDto.getFactoryName();
         product.productName = productDto.getProductName();
         product.status = productDto.getStatus();
         product.sales = productDto.getSales();
