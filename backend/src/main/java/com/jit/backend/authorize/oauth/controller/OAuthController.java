@@ -1,16 +1,17 @@
 package com.jit.backend.authorize.oauth.controller;
 
+import com.jit.backend.authorize.oauth.component.OAuthAffiliationDto;
 import com.jit.backend.authorize.oauth.kakao.KakaoLoginParams;
 import com.jit.backend.authorize.oauth.naver.NaverLoginParams;
 import com.jit.backend.authorize.oauth.service.OAuthLoginService;
+import com.jit.backend.dto.MaterialDto;
+import com.jit.backend.dto.RoleDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "03. 소셜 로그인(OAuth2) 페이지", description = "네이버, 카카오 로그인 관련 api 입니다.")
 @RestController
@@ -40,5 +41,16 @@ public class OAuthController {
     @PostMapping("/naver")
     public ResponseEntity<?> loginNaver(@RequestBody NaverLoginParams params) {
         return ResponseEntity.ok(oAuthLoginService.login(params));
+    }
+
+    @Operation(summary = "OAuth로그인 회원 소속 설정", description = "OAuth로그인으로 만든 회원의 소속을 설정합니다." +
+            "<br>프론트앤드에서는 OAuth로 로그인 및 회원가입시 affiliation의 null여부를 판단하시고 null인 경우 해당 경로로 이동시켜주시기 바랍니다." +
+            "<br>추가 인증 방안을 생각해보면 좋을 것 같습니다. 요청이 들어왔을때 허가해주는 방식등 생각 해봅시다.")
+    @PostMapping("/affiliation/{userId}")
+    public ResponseEntity<String> addAffiliation(
+            @Parameter(description = "파라미터는 유저의ID값을 입력합니다. <br>ex) 2")
+            @PathVariable("userId") Long userId, @RequestBody OAuthAffiliationDto oAuthAffiliationDto) {
+        oAuthLoginService.addAffiliation(userId, oAuthAffiliationDto);
+        return ResponseEntity.ok("Add or update material success");
     }
 }

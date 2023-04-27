@@ -2,6 +2,7 @@ package com.jit.backend.dto;
 
 import com.jit.backend.role.Role;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
 import lombok.*;
 
 @Getter
@@ -20,6 +21,9 @@ public class UserDto {
 
     @Schema(description = "User 이름", example = "test")
     private String name;
+
+    @Schema(description = "소속 회사", example = "CarFactory")
+    private String affiliation;
 
     @Schema(description = "권한")
     private Role role;

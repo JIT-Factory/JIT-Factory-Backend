@@ -32,6 +32,9 @@ public class AuthDto {
         @Schema(description = "이름", example = "Tester")
         private String name;
 
+        @Schema(description = "소속 회사", example = "CarFactory")
+        private String affiliation;
+
         @Builder
         public SignupDto(String email, String password, String name) {
             this.email = email;
