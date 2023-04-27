@@ -30,7 +30,7 @@ public class Product {
     private String status;
 
     @Column
-    private Integer sales;
+    private Long sales;
 
     @Column
     private String reason;

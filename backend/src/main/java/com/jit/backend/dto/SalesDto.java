@@ -3,13 +3,18 @@ package com.jit.backend.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Schema(description = "매출 DTO")
 public class SalesDto {
+
+    @Schema(description = "공장이름")
+    private String factoryName;
 
     @Schema(description = "날짜")
     private LocalDate date;

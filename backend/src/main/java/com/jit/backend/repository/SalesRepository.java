@@ -8,42 +8,17 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 @Repository
 public interface SalesRepository extends JpaRepository<Sales, Long> {
 
-    @Query("SELECT COUNT(DISTINCT p.id) AS totalProductCount, SUM(p.sales) AS salesSum, "
-            + "SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS success, "
-            + "SUM(CASE WHEN p.status = 'fail' THEN 1 ELSE 0 END) AS fail "
-            + "FROM Product p")
-    Map<String, Long> countByStatus();
+    Sales findByFactoryNameAndDate(String factoryName, LocalDate date);
 
-    // 월간
-    @Query("SELECT COUNT(DISTINCT p.id) AS productCount, SUM(p.sales) AS salesSum, "
-            + "SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS success, "
-            + "SUM(CASE WHEN p.status = 'fail' THEN 1 ELSE 0 END) AS fail "
-            + "FROM Product p "
-            + "WHERE YEAR(p.createTime) = YEAR(CURRENT_TIMESTAMP) "
-            + "AND MONTH(p.createTime) = MONTH(CURRENT_TIMESTAMP)")
-    Map<String, Long> sumSalesMonthly();
+    List<Sales> findAllByFactoryName(String factoryName);
 
-    // 주간
-    @Query("SELECT COUNT(DISTINCT p.id) AS productCount, SUM(p.sales) AS salesSum, "
-            + "SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS success, "
-            + "SUM(CASE WHEN p.status = 'fail' THEN 1 ELSE 0 END) AS fail "
-            + "FROM Product p "
-            + "WHERE p.createTime BETWEEN :startDate AND :endDate")
-    Map<String, Long> sumSalesWeekly(@Param("startDate") LocalDateTime startDate,
-                                     @Param("endDate") LocalDateTime endDate);
+    List<Sales> findByFactoryNameAndDateBetween(String factoryName, LocalDate year, LocalDate month);
 
-    // 당일
-    @Query("SELECT COUNT(DISTINCT p.id) AS productCount, SUM(p.sales) AS salesSum, "
-            + "SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS success, "
-            + "SUM(CASE WHEN p.status = 'fail' THEN 1 ELSE 0 END) AS fail "
-            + "FROM Product p "
-            + "WHERE p.createTime BETWEEN :startDate AND :endDate")
-    Map<String, Long> sumSalesDaily(@Param("startDate") LocalDateTime startDate,
-                                    @Param("endDate") LocalDateTime endDate);
-    Sales findByDate(LocalDate date);
+
 }

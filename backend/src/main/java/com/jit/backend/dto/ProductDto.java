@@ -20,7 +20,7 @@ public class ProductDto {
     private String status;
 
     @Schema(description = "상품 매출", example = "100")
-    private Integer sales;
+    private Long sales;
 
     @Schema(description = "상품 불량 이유(불량인경우만 or -)", example = "-")
     private String reason;

@@ -23,6 +23,9 @@ public class Sales {
     private Long id;
 
     @Column
+    private String factoryName;
+
+    @Column
     private LocalDate date;
 
     @Column
@@ -37,13 +40,4 @@ public class Sales {
     @Column
     private Long count;
 
-    public static Sales create(SalesDto salesDto) {
-        Sales sales = new Sales();
-        sales.date = LocalDate.from(salesDto.getDate());
-        sales.sales = salesDto.getSales();
-        sales.success = salesDto.getSuccess();
-        sales.fail = salesDto.getFail();
-        sales.count = salesDto.getCount();
-        return sales;
-    }
 }
