@@ -2,6 +2,7 @@ package com.jit.backend.service;
 
 import com.jit.backend.dto.OrdersDto;
 import com.jit.backend.entity.Orders;
+import com.jit.backend.entity.Product;
 import com.jit.backend.repository.OrdersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,15 +19,25 @@ public class OrdersService {
         List<Orders> ordersList = ordersRepository.findAll();
         return ordersList;
     }
+
+    public List<Orders> nameOfFactoryName(String factoryName){
+        List<Orders> orders = ordersRepository.findAllByFactoryName(factoryName);
+        return orders;
+    }
+
     public void addOrUpdateOrder(OrdersDto ordersDto) {
-        Orders orders = ordersRepository.findByProductName(ordersDto.getProductName());
-        if(orders == null){
-            orders = Orders.builder()
+        Orders order = ordersRepository.findByFactoryNameAndProductName(ordersDto.getFactoryName(), ordersDto.getProductName());
+
+        if (order == null) {
+            order = Orders.builder()
                     .productName(ordersDto.getProductName())
-                    .count(ordersDto.getCount()).build();
-        }else{
-            orders.updateProductOrders(ordersDto);
+                    .factoryName(ordersDto.getFactoryName())
+                    .count(ordersDto.getCount())
+                    .build();
+        } else {
+            order.updateProductOrders(ordersDto);
         }
-        ordersRepository.saveAndFlush(orders);
+
+        ordersRepository.saveAndFlush(order);
     }
 }

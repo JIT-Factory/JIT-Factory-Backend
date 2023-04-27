@@ -19,6 +19,9 @@ public class Orders {
     private Long id;
 
     @Column
+    private String factoryName;
+
+    @Column
     private String productName;
 
     @Column(name = "count", nullable = false, updatable = true)

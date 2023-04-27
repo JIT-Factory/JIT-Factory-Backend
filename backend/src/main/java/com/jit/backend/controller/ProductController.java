@@ -54,7 +54,7 @@ public class ProductController {
             @PathVariable ("factoryName") String factoryName) {
         List<Product> productList;
         try{
-            productList = productService.nameOfProduct(factoryName);
+            productList = productService.nameOfFactoryName(factoryName);
         }catch (IllegalStateException e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }return new ResponseEntity(productList, HttpStatus.OK);

@@ -28,14 +28,13 @@ public class ProductService {
         List<Product> products = productRepository.findAllByStatus(status);
         return products;
     }
-    public List<Product> nameOfProduct(String factoryName){
+    public List<Product> nameOfFactoryName(String factoryName){
         List<Product> products = productRepository.findAllByFactoryName(factoryName);
         return products;
     }
 
     public Product addProduct(ProductDto productDto) {
         Product product = Product.addProduct(productDto);
-
         return productRepository.save(product);
     }
 }

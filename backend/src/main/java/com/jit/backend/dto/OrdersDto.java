@@ -12,6 +12,10 @@ import lombok.Setter;
 @Schema(description = "상품 주문 DTO")
 public class OrdersDto {
 
+
+    @Schema(description = "공장 이름", example = "CarFactory")
+    private String factoryName;
+
     @Schema(description = "상품 이름", example = "ProductA")
     private String productName;
 
