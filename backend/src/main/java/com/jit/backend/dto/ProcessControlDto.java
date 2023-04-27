@@ -10,6 +10,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Schema(description = "Process RUN/START 제어 DTO")
 public class ProcessControlDto {
+
+    @Schema(description = "공장 이름", example = "CarFactory")
+    private String factoryName;
+
     @Schema(description = "공정 이름", example = "FrontProcess")
     private String processName;
 }

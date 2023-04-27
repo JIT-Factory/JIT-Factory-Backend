@@ -11,6 +11,9 @@ import lombok.Setter;
 @Schema(description = "Process 현황관리 관리 DTO")
 public class ProcessDto {
 
+    @Schema(description = "공장 이름", example = "CarFactory")
+    private String factoryName;
+
     @Schema(description = "공정 이름", example = "FrontProcess")
     private String processName;
 

@@ -17,6 +17,9 @@ public class Process {
     private Long id;
 
     @Column
+    private String factoryName;
+
+    @Column
     private String processName;
 
     @Column

@@ -51,13 +51,15 @@ public class SalesController {
         }return new ResponseEntity(salesList, HttpStatus.OK);
     }
 
-    @Operation(summary = "공장 이름에 대한 월간 매출 조회", description = "Factory Name에 해당하는 상품의 생산 날짜, 매출, 성공, 실패, 생산 내역을 조회합니다." +
-            "<br>파라미터는 factoryName, 조회할 year, month를 입력합니다." +
-            "<br> ex) CarFactory" +
-            "<br> ex) 2023" +
-            "<br> ex) 04")
+    @Operation(summary = "공장 이름에 대한 월간 매출 조회", description = "Factory Name에 해당하는 상품의 생산 날짜, 매출, 성공, 실패, 생산 내역을 조회합니다.")
     @GetMapping("/month/{factoryName}/{year}/{month}")
-    public List<Sales> getSalesByMonth(@PathVariable String factoryName, @PathVariable int year, @PathVariable int month) {
+    public List<Sales> getSalesByMonth(
+            @Parameter(description = "해당 파라미터는 factoryName의 값을 입력합니다. <br>ex) CarFactory")
+            @PathVariable String factoryName,
+            @Parameter(description = "해당 파라미터는 조회할 Year 값을 입력합니다. <br>ex) 2023")
+            @PathVariable int year,
+            @Parameter(description = "해당 파라미터는 조회할 Month 값을 입력합니다. <br>ex) 04")
+            @PathVariable int month) {
         return salesService.getSalesByMonth(factoryName, year, month);
     }
 
@@ -65,7 +67,9 @@ public class SalesController {
             "<br>파라미터는 factoryName의 값을 입력합니다." +
             "<br> ex) CarFactory")
     @GetMapping("/month/{factoryName}")
-    public List<Sales> getSalesForPastMonth(@PathVariable String factoryName) {
+    public List<Sales> getSalesForPastMonth(
+            @Parameter(description = "해당 파라미터는 factoryName의 값을 입력합니다. <br>ex) CarFactory")
+            @PathVariable String factoryName) {
         return salesService.getSalesForPastMonth(factoryName);
     }
 
@@ -73,16 +77,19 @@ public class SalesController {
             "<br>파라미터는 factoryName의 값을 입력합니다." +
             "<br> ex) CarFactory")
     @GetMapping("/week/{factoryName}")
-    public List<Sales> getSalesForPastWeek(@PathVariable String factoryName) {
+    public List<Sales> getSalesForPastWeek(
+            @Parameter(description = "해당 파라미터는 factoryName의 값을 입력합니다. <br>ex) CarFactory")
+            @PathVariable String factoryName) {
         return salesService.getSalesForPastWeek(factoryName);
     }
 
-    @Operation(summary = "공장 이름에 대한 당일 매출 조회", description = "Factory Name에 해당하는 상품의 생산 날짜, 매출, 성공, 실패, 생산 내역을 조회합니다." +
-            "<br>파라미터는 factoryName의 값, 조회할 날짜를 입력합니다." +
-            "<br> ex) CarFactory" +
-            "<br> ex) 2023-04-27")
+    @Operation(summary = "공장 이름에 대한 당일 매출 조회", description = "Factory Name에 해당하는 상품의 생산 날짜, 매출, 성공, 실패, 생산 내역을 조회합니다.")
     @GetMapping("/day/{factoryName}/{date}")
-    public List<Sales> getSalesByDay(@PathVariable String factoryName, @PathVariable LocalDate date) {
+    public List<Sales> getSalesByDay(
+            @Parameter(description = "해당 파라미터는 factoryName의 값을 입력합니다. <br>ex) CarFactory")
+            @PathVariable String factoryName,
+            @Parameter(description = "해당 파라미터는 조회하고자 하는 날짜를 입력합니다. <br>ex) 2023-04-27")
+            @PathVariable LocalDate date) {
         return salesService.getSalesByDay(factoryName, date);
     }
 
