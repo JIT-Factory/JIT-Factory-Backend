@@ -82,7 +82,7 @@ public class ProcessController {
         return ResponseEntity.ok(processes);
     }
 
-    @Operation(summary = "공정 상태 개별 업데이트", description = "FactoryName과 ProcessName에 해당하는 공정의 모든 상태를 개별적으로 변경합니다." +
+    @Operation(summary = "공정 추가 및 상태 개별 업데이트", description = "FactoryName과 ProcessName에 해당하는 공정의 모든 상태를 개별적으로 변경합니다." +
             "<br>동적 추가시 FactoryName과 ProcessName을 가지는 튜플이 없으면 생성하고 있으면 Update합니다." +
             "<br>한번에 모든 상태를 변경할 수 있습니다." +
             "<br>반드시 factoryName을 틀리지 않게 잘 적어주세요" +

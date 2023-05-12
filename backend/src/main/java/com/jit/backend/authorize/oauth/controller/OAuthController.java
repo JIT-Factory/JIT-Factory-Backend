@@ -26,7 +26,7 @@ public class OAuthController {
             "<br>AccessToken을 헤더에 넣어서 사용할때는 꼭 \"Bearer \"(띄어쓰기 포함)을 앞에 적은다음 복붙해서 사용하셔야 합니다.")
     @PostMapping("/kakao")
     public ResponseEntity<?> loginKakao(@RequestBody KakaoLoginParams params) {
-        return ResponseEntity.ok(oAuthLoginService.login(params, params.getFactoryName()));
+        return ResponseEntity.ok(oAuthLoginService.login(params));
     }
 
 
@@ -38,6 +38,6 @@ public class OAuthController {
             "<br>AccessToken을 헤더에 넣어서 사용할때는 꼭 \"Bearer \"(띄어쓰기 포함)을 앞에 적은다음 복붙해서 사용하셔야 합니다.")
     @PostMapping("/naver")
     public ResponseEntity<?> loginNaver(@RequestBody NaverLoginParams params) {
-        return ResponseEntity.ok(oAuthLoginService.login(params, params.getFactoryName()));
+        return ResponseEntity.ok(oAuthLoginService.login(params));
     }
 }

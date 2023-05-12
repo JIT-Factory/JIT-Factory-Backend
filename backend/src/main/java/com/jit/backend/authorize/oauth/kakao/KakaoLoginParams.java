@@ -13,8 +13,8 @@ import org.springframework.util.MultiValueMap;
 public class KakaoLoginParams implements OAuthLoginParams {
     @Schema
     private String authorizationCode;
-    @Schema(description = "공장 이름", example = "CarFactory")
-    private String factoryName;
+/*    @Schema(description = "공장 이름", example = "CarFactory")
+    private String factoryName;*/
 
     @Override
     public OAuthProvider oAuthProvider() {
@@ -25,7 +25,7 @@ public class KakaoLoginParams implements OAuthLoginParams {
     public MultiValueMap<String, String> makeBody() {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("code", authorizationCode);
-        body.add("factoryName", factoryName);
+        //body.add("factoryName", factoryName);
         return body;
     }
 }

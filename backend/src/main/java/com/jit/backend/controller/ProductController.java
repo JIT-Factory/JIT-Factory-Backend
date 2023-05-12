@@ -75,10 +75,8 @@ public class ProductController {
         productService.addProduct(productDto);
         return new ResponseEntity(HttpStatus.OK);
     }
-
-    //TODO: 날짜에 대한 조회 기능 추가
     @Operation(summary = "공장 이름에 대한 상품 조회(날자에 따른)", description = "Factory Name에 해당하는 상품의 생산 내역을 조회합니다.")
-    @GetMapping("/name/{factoryName}/{createTime}")
+    @GetMapping("/{factoryName}/{createTime}")
     public ResponseEntity dateOfProduct(
             @Parameter(description = "파라미터는 factoryName의 값을 입력합니다. " +
                     "<br>ex) CarFactory")

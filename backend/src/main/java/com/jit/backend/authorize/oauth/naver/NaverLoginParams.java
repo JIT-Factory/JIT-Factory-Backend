@@ -16,8 +16,8 @@ public class NaverLoginParams implements OAuthLoginParams {
     private String authorizationCode;
     @Schema
     private String state;
-    @Schema(description = "공장 이름", example = "CarFactory")
-    private String factoryName;
+/*    @Schema(description = "공장 이름", example = "CarFactory")
+    private String factoryName;*/
 
     @Override
     public OAuthProvider oAuthProvider() {
@@ -29,7 +29,7 @@ public class NaverLoginParams implements OAuthLoginParams {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("code", authorizationCode);
         body.add("state", state);
-        body.add("factoryName", factoryName);
+        //body.add("factoryName", factoryName);
         return body;
     }
 }
