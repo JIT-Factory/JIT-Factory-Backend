@@ -40,6 +40,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public List<User> findUserByFactoryName(String factoryName)  {
+        return userRepository.findByFactoryName(factoryName);
+    }
+
     public User updateUserRole(Long id, RoleDto roleDto){
         User user = userRepository.findById(id).orElseThrow(()->{
                 throw new IllegalStateException("User 정보를 다시 확인하세요");});

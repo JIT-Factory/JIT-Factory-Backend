@@ -4,6 +4,8 @@ import com.jit.backend.dto.OrdersDto;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @Setter
@@ -26,6 +28,8 @@ public class Orders {
 
     @Column(name = "count", nullable = false, updatable = true)
     private Long count;
+
+    private LocalDate deadLine;
 
     public void updateProductOrders(OrdersDto ordersDto) {
         this.count += ordersDto.getCount();
