@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -33,6 +34,7 @@ public class OrdersService {
                     .productName(ordersDto.getProductName())
                     .factoryName(ordersDto.getFactoryName())
                     .count(ordersDto.getCount())
+                    .deadLine(LocalDate.now())
                     .build();
         } else {
             order.updateProductOrders(ordersDto);

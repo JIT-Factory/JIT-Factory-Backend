@@ -25,11 +25,7 @@ public class Process {
     @Column
     private String processStatus;
 
-    @Column
-    private String conveyorBeltWheel;
 
-    @Column
-    private String conveyorBeltDoor;
 
     @Column
     private String firstProcessMachineConveyorBelt;
@@ -44,13 +40,19 @@ public class Process {
     private String fourthProcessMachineConveyorBelt;
 
 
+    @Column
+    private String fifthProcessMachineConveyorBelt;
+
+    @Column
+    private String sixthProcessMachineConveyorBelt;
+
     public void status(String status) {
         this.processStatus = status;
-        this.conveyorBeltWheel = status;
-        this.conveyorBeltDoor = status;
         this.firstProcessMachineConveyorBelt = status;
         this.secondProcessMachineConveyorBelt = status;
         this.thirdProcessMachineConveyorBelt = status;
         this.fourthProcessMachineConveyorBelt = status;
+        this.fifthProcessMachineConveyorBelt = status;
+        this.sixthProcessMachineConveyorBelt = status;
     }
 }

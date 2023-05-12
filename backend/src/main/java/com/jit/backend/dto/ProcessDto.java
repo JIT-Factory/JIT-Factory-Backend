@@ -17,27 +17,25 @@ public class ProcessDto {
     @Schema(description = "공정 이름", example = "FrontProcess")
     private String processName;
 
-    @Schema(description = "공정 상태", example = "run")
+    @Schema(description = "공정 상태", example = "unUsed")
     private String processStatus;
 
-    @Schema(description = "휠 벨트 상태", example = "run")
-    private String conveyorBeltWheel;
-
-    @Schema(description = "문짝 벨트 상태", example = "run")
-    private String conveyorBeltDoor;
-
-    @Schema(description = "1번 벨트 상태", example = "run")
+    @Schema(description = "1번 벨트 상태", example = "unUsed")
     private String firstProcessMachineConveyorBelt;
 
-    @Schema(description = "2번 벨트 상태", example = "run")
+    @Schema(description = "2번 벨트 상태", example = "unUsed")
     private String secondProcessMachineConveyorBelt;
 
-    @Schema(description = "3번 벨트 상태", example = "run")
+    @Schema(description = "3번 벨트 상태", example = "unUsed")
     private String thirdProcessMachineConveyorBelt;
 
-    @Schema(description = "4번 벨트 상태", example = "run")
+    @Schema(description = "4번 벨트 상태", example = "unUsed")
     private String fourthProcessMachineConveyorBelt;
 
+    @Schema(description = "5번 벨트 상태", example = "unUsed")
+    private String fifthProcessMachineConveyorBelt;
 
+    @Schema(description = "6번 벨트 상태", example = "unUsed")
+    private String sixthProcessMachineConveyorBelt;
 
 }

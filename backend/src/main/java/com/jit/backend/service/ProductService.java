@@ -35,6 +35,11 @@ public class ProductService {
         return products;
     }
 
+    public List<Product> dateOfFactoryName(String factoryName, LocalDate createTime){
+        List<Product> products = productRepository.findAllByFactoryNameAndCreateDate(factoryName, createTime);
+        return products;
+    }
+
     public Product addProduct(ProductDto productDto) {
         Product product = Product.addProduct(productDto);
 
@@ -62,6 +67,11 @@ public class ProductService {
         // Sales 엔티티를 저장합니다.
         salesRepository.save(sales);
 
+        return productRepository.save(product);
+    }
+
+    public Product initProduct(ProductDto productDto) {
+        Product product = Product.addProduct(productDto);
         return productRepository.save(product);
     }
 }
