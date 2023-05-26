@@ -1,0 +1,18 @@
+jwt:
+  secret: dXNn6rO17Jyg64yA7ZWZ6rO87ZWo6ruY7ZWY64qU7Lqh7Iqk7Yak6rK97KeE64yA7ZqM7Iqk66eI7Yq47Yyp7Yag66as7J6F64uI64uk
+  refresh-token-validity-in-seconds: 1209600 # 14일
+  access-token-validity-in-seconds: 43200 # 12시간
+
+oauth:
+  kakao:
+    client-id: ca246a6ff0b18bc1f0c871e985b06eee
+    redirect-uri: http://localhost:8080/api/oauth/kakao
+    url:
+      auth: https://kauth.kakao.com
+      api: https://kapi.kakao.com
+  naver:
+    secret: hLl_ArsNKQ
+    client-id: LriqiAyQwy8XlD7Wgsoe
+    url:
+      auth: https://nid.naver.com
+      api: https://openapi.naver.com
