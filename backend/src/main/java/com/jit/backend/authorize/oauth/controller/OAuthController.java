@@ -1,6 +1,7 @@
 package com.jit.backend.authorize.oauth.controller;
 
 
+import com.jit.backend.authorize.oauth.dto.OAuthFactoryNameDto;
 import com.jit.backend.authorize.oauth.kakao.KakaoLoginParams;
 import com.jit.backend.authorize.oauth.naver.NaverLoginParams;
 import com.jit.backend.authorize.oauth.service.OAuthLoginService;
@@ -39,5 +40,11 @@ public class OAuthController {
     @PostMapping("/naver")
     public ResponseEntity<?> loginNaver(@RequestBody NaverLoginParams params) {
         return ResponseEntity.ok(oAuthLoginService.login(params));
+    }
+
+    @Operation(summary = "OAuth 로그인 Factory Name 설정", description = "OAuth 로그인후 Factory Name 설정하는 API 입니다")
+    @PostMapping("/factory")
+    public ResponseEntity setFactoryName(OAuthFactoryNameDto oAuthFactoryNameDto){
+        return ResponseEntity.ok(oAuthLoginService.setFactoryName(oAuthFactoryNameDto));
     }
 }

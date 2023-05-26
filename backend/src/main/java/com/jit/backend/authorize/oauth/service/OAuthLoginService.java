@@ -1,6 +1,7 @@
 package com.jit.backend.authorize.oauth.service;
 
 
+import com.jit.backend.authorize.oauth.dto.OAuthFactoryNameDto;
 import com.jit.backend.entity.User;
 import com.jit.backend.authorize.jwt.AuthDto;
 import com.jit.backend.authorize.oauth.component.OAuthInfoResponse;
@@ -41,11 +42,11 @@ public class OAuthLoginService {
         return userRepository.save(user).getId();
     }
 
-    /*public User addAffiliation(Long id, String factoryName){
-        User user = userRepository.findById(id).orElseThrow(()->{
+    public User setFactoryName(OAuthFactoryNameDto oAuthFactoryNameDto){
+        User user = userRepository.findByEmail(oAuthFactoryNameDto.getEmail()).orElseThrow(()->{
             throw new IllegalStateException("없는 유저입니다.");});
-        user.addAffiliation(factoryName);
+        user.addAffiliation(oAuthFactoryNameDto.getFactoryName());
         userRepository.saveAndFlush(user);
         return user;
-    }*/
+    }
 }
