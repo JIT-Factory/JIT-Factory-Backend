@@ -13,7 +13,7 @@ USG 캡스톤디자인 졸업작품 백엔드 레포지토리
 
 ### Spring Docs
 - SpirngDoc-Ui의 SpringDoc를 사용해서 API 명세서 사용함
-- localhost:8000/jit-factory-api.html 로 path 커스텀
+- localhost:8080/jit-factory-api.html 로 path 커스텀
 
 ### Security
 - JWT
