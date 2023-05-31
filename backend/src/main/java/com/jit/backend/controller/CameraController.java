@@ -1,14 +1,17 @@
 package com.jit.backend.controller;
 
 import com.jit.backend.dto.CameraDto;
+import com.jit.backend.entity.Camera;
+import com.jit.backend.entity.Product;
+import com.jit.backend.service.CameraService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,9 +19,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/camera")
 public class CameraController {
 
+    public final CameraService cameraService;
+
     @Operation(summary = "카메라 위치 업데이트", description = "FactoryName과 CameraNumber에 해당하는 위치의 카메라로 화면을 전환합니다.")
     @PostMapping("/change")
     public ResponseEntity<String> changeCameraNumber(@RequestBody CameraDto cameraDto) {
-        return ResponseEntity.ok(cameraDto.getFactoryName() + ", " + cameraDto.getCameraNumber());
+        cameraService.changeCameraNumber(cameraDto);
+        return ResponseEntity.ok("factoryName : " + cameraDto.getFactoryName() + " cameraNumber : " + cameraDto.getCameraNumber());
     }
+
+
+    @GetMapping("/show")
+    public ResponseEntity showCameraInfo(){
+        List<Camera> camera;
+        try{
+            camera = cameraService.showCameraInfo();
+        }catch (IllegalStateException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }return new ResponseEntity(camera, HttpStatus.OK);
+    }
+
 }
