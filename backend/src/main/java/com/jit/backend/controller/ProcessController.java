@@ -24,49 +24,6 @@ public class ProcessController {
 
     private final ProcessService processService;
 
-    /*@Operation(summary = "공정 상태 조회", description = "공정, 벨트 등 공정의 상태를 조회합니다.")
-    @GetMapping("/{factoryName}/{processName}")
-    public ResponseEntity<?> showProcessStatus(
-            @Parameter(description = "파라미터는 생성했던 공정의 이름을 입력합니다<br>ex) FrontProcess")
-            @PathVariable ("factoryName") String factoryName,
-            @PathVariable ("processName") String processName) {
-        Process process;
-        try{
-            process = processService.showStatus(factoryName, processName);
-        }catch (IllegalStateException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }return new ResponseEntity(process, HttpStatus.OK);
-    }
-
-    @Operation(summary = "공정 상태 업데이트", description = "공정, 벨트 등 공정의 상태를 업데이트 합니다. <br>모든 Key, Value를 입력하여 변경해도 가능하며 변경할 부분만 입력하여 변경하는 것도 가능합니다.<br>모든 Key에 대해서 Value의 값이 <br>  - run일 경우 Unity의 공정 혹은 벨트를 시작합니다.<br>  - strop일 경우 Unity의 공정 혹은 벨트를 정지합니다.")
-    @PostMapping("/update/{factoryName}")
-    public ResponseEntity<Void> updateProcess(
-            @RequestBody @Valid ProcessDto processDto,
-            @PathVariable ("factoryName") String factoryName) {
-        processService.updateProcess(factoryName, processDto);
-        return new ResponseEntity(HttpStatus.OK);
-    }
-
-    @Operation(summary = "공정 정지", description = "공정, 벨트 등 공정의 모든 장치를 정지 합니다.<br> 모든 Key에 대한 Value의 값을 전부 \"stop\"으로 변경합니다.")
-    @PostMapping("/stop/{factoryName}")
-    public ResponseEntity<Void> stopProcess(
-            @RequestBody @Valid ProcessControlDto processControlDto,
-            @PathVariable ("factoryName") String factoryName) {
-        processService.stopProcess(factoryName, processControlDto);
-        return new ResponseEntity(HttpStatus.OK);
-    }
-
-    @Operation(summary = "공정 시작", description = "공정, 벨트 등 공정의 모든 장치를 정지 합니다. <br> 모든 Key에 대한 Value의 값을 전부 \"run\"으로 변경합니다.")
-    @PostMapping("/start/{factoryName}")
-    public ResponseEntity<Void> startProcess(
-            @RequestBody @Valid ProcessControlDto processControlDto,
-            @PathVariable ("factoryName") String factoryName) {
-        processService.startProcess(factoryName, processControlDto);
-        return new ResponseEntity(HttpStatus.OK);
-    }
-*/
-
-
     @Operation(summary = "공정 상태 조회", description = "FactoryName과 ProcessName에 해당하는 공정의 모든 부속의 상태를 조회합니다.")
     @GetMapping
     public ResponseEntity<List<Process>> getProcessesByFactoryNameAndProcessName(
