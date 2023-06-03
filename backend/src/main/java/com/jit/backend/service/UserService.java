@@ -44,6 +44,10 @@ public class UserService {
         return userRepository.findByFactoryName(factoryName);
     }
 
+    public List<User> findUserNameByEmail(String email){
+        return userRepository.findNameByEmail(email);
+    }
+
     public User updateUserRole(Long id, RoleDto roleDto){
         User user = userRepository.findById(id).orElseThrow(()->{
                 throw new IllegalStateException("User 정보를 다시 확인하세요");});

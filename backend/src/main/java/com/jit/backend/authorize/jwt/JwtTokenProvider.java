@@ -28,6 +28,7 @@ public class JwtTokenProvider implements InitializingBean {
 
     private static final String AUTHORITIES_KEY = "role";
     private static final String EMAIL_KEY = "email";
+    private static final String USER_NAME = "userName";
     private static final String FACTORY_NAME = "factoryName";
     private static final String url = "https://localhost:8080";
 
@@ -69,6 +70,7 @@ public class JwtTokenProvider implements InitializingBean {
                 .setExpiration(new Date(now + accessTokenValidityInMilliseconds))
                 .setSubject("access-token")
                 .claim(url, true)
+                .claim(USER_NAME, userService.findUserNameByEmail(email))
                 .claim(EMAIL_KEY, email)
                 .claim(AUTHORITIES_KEY, authorities)
                 .claim(FACTORY_NAME, userService.currentUserInfo(email))
