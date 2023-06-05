@@ -14,13 +14,12 @@ import java.util.Optional;
 public class CameraService {
     private final CameraRepository cameraRepository;
 
-    public void changeCameraNumber(CameraDto cameraDto){
-        Optional<Camera> optionalCamera = cameraRepository.findById(1L);
-        if (optionalCamera.isPresent()) {
-            Camera camera = optionalCamera.get();
+    public void changeCameraNumber(CameraDto cameraDto) {
+        Camera factoryCamera = cameraRepository.findByFactoryName(cameraDto.getFactoryName());
+        if (factoryCamera != null) {
             Long newCameraNumber = cameraDto.getCameraNumber();
-            camera.setCameraNumber(newCameraNumber);
-            cameraRepository.save(camera);
+            factoryCamera.setCameraNumber(newCameraNumber);
+            cameraRepository.save(factoryCamera);
         } else {
             String factoryName = cameraDto.getFactoryName();
             Long cameraNumber = cameraDto.getCameraNumber();
@@ -31,8 +30,9 @@ public class CameraService {
             cameraRepository.save(newCamera);
         }
     }
-    public List<Camera> showCameraInfo(){
-        List<Camera> camera = cameraRepository.findAll();
+
+    public Camera showCameraInfo(String factoryName){
+        Camera camera = cameraRepository.findByFactoryName(factoryName);
         return camera;
     }
 }

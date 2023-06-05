@@ -29,11 +29,12 @@ public class CameraController {
     }
 
 
-    @GetMapping("/show")
-    public ResponseEntity showCameraInfo(){
-        List<Camera> camera;
+    @GetMapping("/show/{factoryName}")
+    @Operation(summary = "카메라 조회", description = "파라미터에 해당하는 FactoryName의 CameraNumber에 해당하는 카메라 위치를 조회합니다.")
+    public ResponseEntity showCameraInfo(@PathVariable String factoryName){
+        Camera camera;
         try{
-            camera = cameraService.showCameraInfo();
+            camera = cameraService.showCameraInfo(factoryName);
         }catch (IllegalStateException e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }return new ResponseEntity(camera, HttpStatus.OK);
