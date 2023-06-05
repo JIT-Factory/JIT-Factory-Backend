@@ -1,15 +1,12 @@
 package com.jit.backend.controller;
 
-import com.jit.backend.dto.ProcessControlDto;
 import com.jit.backend.dto.ProcessDto;
 import com.jit.backend.entity.Process;
 import com.jit.backend.service.ProcessService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +21,31 @@ public class ProcessController {
 
     private final ProcessService processService;
 
+    @Operation(summary = "공정 상태 조회", description = "모든 공장의 모든 공정의 상태를 조회합니다.")
+    @GetMapping("/show")
+    public ResponseEntity<List<Process>> getProcessesByFactoryName(){
+        List<Process> processes = processService.allProcess();
+        if (processes.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(processes);
+    }
+
+    @Operation(summary = "공정 상태 조회", description = "FactoryName에 해당하는 공장의 모든 부속의 상태를 조회합니다.")
+    @GetMapping("/show/factory")
+    public ResponseEntity<List<Process>> getProcesses(
+            @Parameter(description = "해당 파라미터는 factoryName의 값을 입력합니다. <br>ex) CarFactory")
+            @RequestParam String factoryName
+    ) {
+        List<Process> processes = processService.getProcessesByFactoryName(factoryName);
+        if (processes.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(processes);
+    }
+
     @Operation(summary = "공정 상태 조회", description = "FactoryName과 ProcessName에 해당하는 공정의 모든 부속의 상태를 조회합니다.")
-    @GetMapping
+    @GetMapping("/show/factory/process")
     public ResponseEntity<List<Process>> getProcessesByFactoryNameAndProcessName(
             @Parameter(description = "해당 파라미터는 factoryName의 값을 입력합니다. <br>ex) CarFactory")
             @RequestParam String factoryName,
@@ -38,6 +58,7 @@ public class ProcessController {
         }
         return ResponseEntity.ok(processes);
     }
+
 
     @Operation(summary = "공정 추가 및 상태 개별 업데이트", description = "FactoryName과 ProcessName에 해당하는 공정의 모든 상태를 개별적으로 변경합니다." +
             "<br>동적 추가시 FactoryName과 ProcessName을 가지는 튜플이 없으면 생성하고 있으면 Update합니다." +

@@ -1,7 +1,6 @@
 package com.jit.backend.service;
 
 
-import com.jit.backend.dto.ProcessControlDto;
 import com.jit.backend.dto.ProcessDto;
 import com.jit.backend.entity.Process;
 import com.jit.backend.repository.ProcessRepository;
@@ -20,10 +19,15 @@ public class ProcessService {
 
     private final ProcessRepository processRepository;
 
+    public List<Process> allProcess(){
+        return processRepository.findAll();
+    }
+    public List<Process> getProcessesByFactoryName(String factoryName) {
+        return processRepository.findByFactoryName(factoryName);
+    }
     public List<Process> getProcessesByFactoryNameAndProcessName(String factoryName, String processName) {
         return processRepository.findByFactoryNameAndProcessName(factoryName, processName);
     }
-
 
     public void addOrUpdateProcess(ProcessDto processDto) {
         List<Process> existingProcesses = processRepository.findByFactoryNameAndProcessName(processDto.getFactoryName(), processDto.getProcessName());

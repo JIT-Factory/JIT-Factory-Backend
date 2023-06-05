@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ProcessRepository extends JpaRepository<Process, Long> {
+    List<Process> findByFactoryName(String factoryName);
     List<Process> findByFactoryNameAndProcessName(String factoryName, String processName);
 }
