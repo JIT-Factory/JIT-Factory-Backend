@@ -49,7 +49,10 @@ public class OrdersController {
     }
 
 
-    @Operation(summary = "주문", description = "Unity로 Product를 추가할 수 있는 주문 기능입니다. <br>productName에 해당 이름이 존재하면 생산할 물건을 추가합니다. 없으면 Create합니다.<br>Unity는 count의 갯수만큼 Prodcut를 생산합니다.<br>Unity에서 물건을 생산을 완료하면 POST로 Count를 -1을 해주시기 바랍니다.")
+    @Operation(summary = "주문", description = "Unity로 Product를 추가할 수 있는 주문 기능입니다. " +
+            "<br>productName에 해당 이름이 존재하면 생산할 물건을 추가합니다. 없으면 Create합니다." +
+            "<br>Unity는 count의 갯수만큼 Prodcut를 생산합니다." +
+            "<br>Unity에서 물건을 생산을 완료하면 POST로 Count를 -1을 해주시기 바랍니다.")
     @PostMapping("/new")
     public ResponseEntity<String> addOrUpdateOrder(@RequestBody OrdersDto ordersDto) {
         ordersService.addOrUpdateOrder(ordersDto);

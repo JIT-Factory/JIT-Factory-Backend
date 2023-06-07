@@ -30,7 +30,8 @@ public class AuthApiController {
     private final long COOKIE_EXPIRATION = 7776000; // 90일
 
     // 회원가입
-    @Operation(summary = "User 회원가입", description = "User의 회원가입 기능입니다. <br>여기서 회원가입을 하면 Role이 USER인 회원이 생성됩니다.")
+    @Operation(summary = "User 회원가입", description = "User의 회원가입 기능입니다. " +
+            "<br>여기서 회원가입을 하면 Role이 USER인 회원이 생성됩니다.")
     @PostMapping("/signup")
     public ResponseEntity<Void> signup(@RequestBody @Valid AuthDto.SignupDto signupDto) {
         String encodedPassword = encoder.encode(signupDto.getPassword());
@@ -40,7 +41,9 @@ public class AuthApiController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @Operation(summary = "Email 인증", description = "회원가입에 필요한 이메일 인증기능입니다. <br>회원가입에서 입력한 이메일을 body에 넣어 post하면 이메일이 발송됩니다.<br>이메일에 발송된 코드와 Response된 코드가 일치하면 회원가입을 PASS 시켜주세요")
+    @Operation(summary = "Email 인증", description = "회원가입에 필요한 이메일 인증기능입니다. " +
+            "<br>회원가입에서 입력한 이메일을 body에 넣어 post하면 이메일이 발송됩니다." +
+            "<br>이메일에 발송된 코드와 Response된 코드가 일치하면 회원가입을 PASS 시켜주세요")
     @PostMapping("/signup/emailConfirm")
     public String mailConfirm(@RequestBody EmailDto emailDto) throws MessagingException, UnsupportedEncodingException {
         String authCode = emailService.sendEmail(emailDto.getEmail());
@@ -49,7 +52,9 @@ public class AuthApiController {
 
 
     // 로그인 -> 토큰 발급
-    @Operation(summary = "로그인", description = "User 및 ADMIN의 로그인 기능입니다.")
+    @Operation(summary = "로그인", description = "User 및 ADMIN의 로그인 기능입니다." +
+            "<br>email 형식에 맞게 작성해주세요" +
+            "<br>패스워드는 암호화 됩니다.")
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid AuthDto.LoginDto loginDto) {
         // User 등록 및 Refresh Token 저장
