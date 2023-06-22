@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +26,12 @@ public class ProductService {
 
     public List<Product> allProducts()  {
         List<Product> products = productRepository.findAll();
-        return products;
+        List<Product> sortedProducts = products.stream()
+                .sorted(Comparator.comparing(Product::getCreateTime))
+                .collect(Collectors.toList());
+
+        return sortedProducts;
+        //return products;
     }
     public List<Product> statusOfProduct(String status){
         List<Product> products = productRepository.findAllByStatus(status);
@@ -32,12 +39,22 @@ public class ProductService {
     }
     public List<Product> nameOfFactoryName(String factoryName){
         List<Product> products = productRepository.findAllByFactoryName(factoryName);
-        return products;
+        List<Product> sortedProducts = products.stream()
+                .sorted(Comparator.comparing(Product::getCreateTime))
+                .collect(Collectors.toList());
+
+        return sortedProducts;
+        //return products;
     }
 
     public List<Product> dateOfFactoryName(String factoryName, LocalDate createTime){
         List<Product> products = productRepository.findAllByFactoryNameAndCreateDate(factoryName, createTime);
-        return products;
+        List<Product> sortedProducts = products.stream()
+                .sorted(Comparator.comparing(Product::getCreateTime))
+                .collect(Collectors.toList());
+
+        return sortedProducts;
+        //return products;
     }
 
     public Product addProduct(ProductDto productDto) {
